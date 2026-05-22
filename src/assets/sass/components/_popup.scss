@@ -1,0 +1,273 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index' as kodata;
+
+.scrlock{
+  // position: absolute;
+
+  // &.scrlock-after{
+  //   overflow-y: hidden;
+
+  //   .wrapper{
+  //     height: auto;
+
+  //     .container{
+  //       min-height: calc(100vh - 10.6rem);
+  //     }
+  //   }
+  // }
+  
+  // .wrapper{
+  //   overflow-y: hidden;
+  //   overflow-x: auto;
+  // }
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.2s;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-to,
+.modal-leave-from {
+  opacity: 1;
+}
+
+.pop-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: kodata.$defaultMinWidth;
+  height: 100%;
+  z-index: 1000;
+
+  &.last-popup{
+    .dimmed{
+      background: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  .dimmed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .pop-container {
+    position: relative;
+    min-width: kodata.$defaultMinWidth;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    
+    .pop-wrap{
+      @include kodata.flex(center, center, column);
+      min-height: 100%;
+
+      .pop-inner{
+        position: relative;
+        width: 54rem;
+        background-color: #fff;
+        border-radius: 18px;
+      }
+
+      .pop-header{
+        padding: 2rem 2.6rem 1rem;
+
+        .pop-ttl{
+          @include kodata.ellipsis;
+          font-size: 1.6rem;
+          font-weight: kodata.$fwSemiBold;
+          line-height: 2.4rem;
+        }
+
+        + .pop-body {
+          margin-top: 2.6rem;
+        }
+      }
+
+      .pop-body{
+        position: relative;
+        max-height: calc(100vh - 16rem - 8.8rem - 2.4rem - 4rem);
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0 1.6rem 1.6rem;
+        margin: 0 1rem;
+
+        .pop-sub-ttl{
+          display: block;
+          margin-bottom: .8rem;
+          font-size: 1.4rem;
+          font-weight: kodata.$fwSemiBold;
+          line-height: 1.8rem;
+        }
+      }
+
+      .pop-footer{
+        position: relative;
+        padding: 0 2.6rem 2rem;
+        text-align: right;
+        .btn-wrap{
+          display: inline-flex;
+          
+          [class^="btn-"]{
+            flex: none;
+            width: auto;
+            min-width: 8rem;
+          }
+        }
+      }
+
+      
+      .pop-close{
+        position: absolute;
+        top: 1.6rem; 
+        right: 1.2rem;
+        width: 3.2rem;
+        height: 3.2rem;
+        @include kodata.imgSrc('common/icon-close.svg', center, 2.4rem);
+      }
+    }
+    
+    // popup size
+    &.pop-w800{
+      .pop-inner{
+        width: 80rem;
+      }
+    } 
+    &.pop-w1000{
+      .pop-inner{
+        width: 100rem;
+
+        .pop-footer{
+          text-align: right;
+
+          .btn-wrap{
+            display: inline-flex;
+            
+            [class^="btn-"]{
+              flex: none;
+              width: auto;
+              min-width: 14.4rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  // 알럿
+  &.type-alert{
+    .pop-container{
+      .pop-wrap{
+        .pop-inner{
+          width: 30rem;
+          padding-top: 8.4rem;
+
+          .pop-body{
+            padding-bottom: 4.8rem;
+
+            p{
+              font-size: 1.6rem;
+              font-weight: kodata.$fwMedium;
+              color: kodata.$colorGray2;
+              text-align: center;
+              line-height: 1.2;
+            }
+          }
+
+          .pop-footer{
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  //알림창
+  &.type-alarm{
+    text-align: center;
+
+    .pop-container{
+      .pop-wrap{
+        .pop-inner{
+          width: 36rem;
+          padding-top: 2.4rem;
+          border: 3px solid kodata.$colorPrimary;
+    
+          .ttl{
+            position: relative;
+            padding-top: 11.6rem;
+            // @include kodata.imgSrc('icon-pop-alarm.png' ,center top, 7.8rem auto );
+            font-size: 2rem;
+            font-weight: kodata.$fwBold;
+            line-height: 1.6;
+            color: kodata.$colorPrimary;
+          }
+          
+          .txt{
+            margin-top: 1.2rem;
+            font-size: 1.6rem;
+            font-weight: kodata.$fwMedium;
+            line-height: 1.4;
+            color: kodata.$colorGray2;
+          }
+          
+          .sub-txt{
+            display: block;
+            margin-top: 1.2rem;
+            font-size: 1.4rem;
+            font-weight: kodata.$fwMedium;
+            line-height: 1.4;
+            color: #ccc;
+          }
+        }
+      }
+    }
+  }
+
+  .tbl-form + .btn-wrap{
+    margin-top: 2.4rem;
+  }
+
+  .hd-logo{
+    width: 10.4rem;
+    height: 3.2rem;
+    // @include kodata.imgSrc('logo-popup.png');
+}
+}
+
+// Mac주소 승인요청 팝업
+.pop-mac-addr{
+  
+  .info-txt{
+    text-align: center;
+
+    .l-ttl{
+      display: block;
+    }
+    .txt{
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 1.4rem;
+      font-weight: kodata.$fwMedium;
+      color: kodata.$colorGray2;
+    }
+  }
+}
+
+//윈도우 팝업
+.window-pop-content{
+  .main-ttl{
+    font-size: 2rem;
+    line-height: 1.6;
+  }
+}

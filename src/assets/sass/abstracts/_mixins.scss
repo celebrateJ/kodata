@@ -1,0 +1,38 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/variables' as kodata;
+
+//말줄임
+@mixin ellipsis($line: 1) {
+  @if ($line == 1) {
+    overflow: hidden;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+
+//flex 정렬
+@mixin flex($justify: flex-start, $align: center, $direction: row, $display: flex) {
+  display: $display;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+}
+
+//title
+@mixin title($fontSize, $lineHeigt: 1.1, $fontWeight: kodata.$fwBold){
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeigt;
+}
+
+//img src
+@mixin imgSrc($imgUrl, $position: center, $size: 100%, $repeat: no-repeat, $bgColor: transparent){
+  background: url('@/assets/images/#{$imgUrl}') $position / $size $repeat $bgColor;
+}

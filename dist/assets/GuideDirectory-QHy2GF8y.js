@@ -1,0 +1,1 @@
+import{_ as t,b as o,c,d as e}from"./index-SBn8eRYL.js";const n={setup(){}},r={class:"content-guide"};function a(d,s,i,l,p,u){return o(),c("div",r,[...s[0]||(s[0]=[e("h1",null,"폴더구조",-1),e("h2",null,"기본",-1),e("div",{class:"area-con"}," www / css, img, js, html 폴더 구조 ",-1)])])}const f=t(n,[["render",a]]);export{f as default};

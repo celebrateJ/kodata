@@ -1,0 +1,83 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index' as kodata;
+
+/* tab */
+.tab-box{
+  .tabs{
+    @include kodata.flex;
+
+    > li{
+      flex: 1 1 auto;
+      width: 100%;
+      border-bottom: 1px solid #d9d9d9;
+      transition: border-color .23s;
+
+      &.active{
+        border-color: #000;
+        border-width: 2.3px;
+
+        .item{
+          color: kodata.$colorGray1;
+          font-weight: kodata.$fwBold;
+        }
+      }
+
+      .item {
+        padding: 1.5rem .6rem 1.6rem;
+        width: 100%;
+        background-color: transparent;
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: kodata.$fwMedium;
+        color: #919298;
+        transition: color .23s;
+
+        &:active, &:focus{
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.x-scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  &.x-scroll::-webkit-scrollbar {
+    width: .4rem;
+  }
+  &.x-scroll::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  &.x-scroll::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 1rem;
+  }
+}
+
+.tabs-content{
+  margin-top: 3.2rem;
+
+  .sub-title-wrap{
+    margin-bottom: 1.2rem;
+
+    .l-ttl{
+      line-height: 3.6rem;
+    }
+
+    .ipt-row.type-date{
+      .dp__input_wrap{
+        width: 12.6rem;
+      }
+    }
+  }
+  
+  .sub-title-wrap:not(:first-child){
+    margin-top: 4rem;
+  }
+}
+
+

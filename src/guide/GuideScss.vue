@@ -1,0 +1,53 @@
+<template>
+	<div class="content-guide">
+		<h1>SCSS 폴더 구조 및 파일 명세</h1>
+
+		<h2>root</h2>
+		<div class="area-con">
+			- src/assets/sass/ 폴더 내부에 모든 scss 파일을 정의한다.
+			<br>
+		</div>
+		
+		<h2>폴더 명세</h2>
+		<div class="area-con">
+			<strong class="bold">abstracts</strong>
+			<p>- abstracts 폴더는 프로젝트 전체에 사용되는 모든 Sass 도구와 도우미를 담고 있다. </p>
+			<p>- ex) _variables.scss, _mixins.scss</p>
+			<br>
+			<strong class="bold">base</strong>
+			<p>- 프로젝트의 상용구 코드를 담고 있다. 사이트 전반에 사용될 폰트, 디폴트 스타일이 해당된다.</p>
+			<p>- ex) _reset.scss, _font.scss</p>
+			<br>
+			<strong class="bold">layout</strong>
+			<p>-사이트 구조에 해당하는 레이아웃을 담고 있다.</p>
+			<p>- ex) _layout.scss</p>
+			<br>
+			<strong class="bold">components</strong>
+			<p>-layout보다 더 작은 구성요소를 담고 있으며 사이트 내에서 재사용이 가능한 부분들을 의미한다.</p>
+			<p>- ex) _table.scss, _form.scss, _popup.scss</p>
+			<br>
+			<strong class="bold">page</strong>
+			<p>-페이지 고유의 스타일이 있는 경우 페이지 이름을 딴 파일을 만들어 사용한다.</p>
+			<p>- ex) _화면ID.scss</p>
+			<br>
+			<strong class="bold">guide</strong>
+			<p>-*** 퍼블 가이드 확인용으로 필요한 scss 모음. 개발 작업과는 무관한 폴더</p>
+			<br>
+			<strong class="bold">bimsAdmin.scss</strong>
+			<p>-위와 같이 각 폴더 기준에 따라 scss 파일들을 분류했다면, 이 모든 파일들을 단 하나의 파일로 모아서 사용한다. 해당 파일은 직접적으로 스타일을 정의하지 않고 단지 import만 담당하는 파일이다.</p>
+			<br>
+		</div>
+
+
+	</div>
+</template>
+
+<script>
+export default {
+  setup() {},
+}
+</script>
+
+<style lang="scss">
+	@use '@/assets/sass/guide/guide.scss'; 
+</style>

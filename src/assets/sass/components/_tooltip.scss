@@ -1,0 +1,26 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index' as kodata;
+
+/* 기존 absolute 방식의 툴팁 스타일을 제거하고 포지셔닝은 popper가 담당하도록 합니다. */
+.tooltip-wrap {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* .tooltip-cont 스타일은 vendors.scss의 .popper 내부에서 정의된 스타일과 일치하도록 관리하거나, 
+   이곳의 스타일을 vendors.scss에서 불러와 사용할 수 있습니다. */
+.tooltip-cont {
+  padding: .5rem 1.2rem;
+  border-radius: 1.7rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.3rem;
+  font-weight: kodata.$fwMedium;
+  line-height: 1.8rem;
+  color: kodata.$colorWhite;
+  word-break: keep-all;
+  white-space: nowrap;
+
+  span {
+    @extend %fontInherit;
+  }
+}

@@ -1,0 +1,1 @@
+import{_ as s,c as a,p as t,b as o}from"./index-SBn8eRYL.js";const n={name:"UiTabPanel",props:{},setup(){}},r={class:"tab-panel"};function c(e,p,l,_,d,i){return o(),a("div",r,[t(e.$slots,"default")])}const u=s(n,[["render",c]]);export{u as default};

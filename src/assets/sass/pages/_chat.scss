@@ -1,0 +1,1199 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index' as kodata;
+
+/* chat */
+.sidebar-wrap{
+  &.collapsed{
+    width: 6.4rem;
+    padding: 2rem 1.1rem;
+    overflow: hidden;                      
+
+    .sidebar-header{
+      .tooltip-wrap{
+        opacity: 0;
+        margin: 0 auto !important;
+        transition: margin .23s .2s;
+        animation: fadeIn .23s .2s forwards;
+      }
+
+      .btn-toggle-sidebar{
+        transform: rotate(180deg);
+      }
+    }
+
+    .btn-new-chat{
+      .text{
+        animation: fadeOut .23s forwards;  
+      }
+
+      &:before{
+        margin: 0;
+        transition: margin .23s;
+      }
+    }
+
+    .chat-history-box{
+      animation: fadeOut .23s forwards;
+    }
+
+    + .content-wrap{
+      margin-left: 8.4rem;
+    }
+  }
+
+  &.expanded{
+    .chat-history-box{
+      opacity: 0;
+      animation: fadeIn .23s .2s forwards;
+    }
+
+    .btn-new-chat{
+      &:before{
+        transition: margin .23s .2s;
+      }
+
+      .text{
+        max-width: 0;
+        opacity: 0;
+        animation: fadeInWidth .23s .2s forwards;  
+      }
+    }
+  }
+}
+
+.chat-history-wrap{
+  @include kodata.flex(flex-start, flex-start, column);
+  height: 100%;
+
+  .sidebar-header{
+    @include kodata.flex;
+    width: 100%;
+    margin-bottom: 2.4rem;
+
+    .tooltip-wrap{
+      display: block;
+      margin-left: auto !important;
+    }
+
+    .btn-toggle-sidebar{
+      width: 2.4rem;
+      height: 2.4rem;
+      @include kodata.imgSrc('chat/icon-toggle-sidebar.svg');
+    }
+  }
+
+  .chat-history-group{
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex: 1;
+    width: calc(100% + 2rem);
+    margin: 0 -1rem;
+    padding: 0 1rem;
+  }
+
+  .chat-history-box{
+    + .chat-history-box{
+      margin-top: 2.4rem;
+      padding-top: 2.4rem;
+      border-top: 1px solid kodata.$colorLnb;
+    }
+  }
+
+  .chat-group{
+    + .chat-group{
+      margin-top: 2.4rem;
+    }
+  }
+
+  .btn-new-chat{
+    @include kodata.flex(center, center);
+    width: 100%;
+    height: 4.2rem;
+    padding: 0 .9rem;
+    border-radius: 12px;
+    background-color: kodata.$colorPrimary;
+    margin-bottom: 2.4rem;
+    
+    .text{
+      font-size: 1.8rem;
+      font-weight: kodata.$fwBold;
+      color: kodata.$colorWhite;
+      line-height: 4.2rem;
+    }
+
+    &:before{
+      flex-shrink: 0;
+      content: ''; 
+      display: inline-block;
+      width: 2.4rem;
+      height: 2.4rem;
+      margin-right: .4rem;
+      @include kodata.imgSrc('chat/icon-new-chat.svg');
+      vertical-align: top;
+    }
+  }
+
+  .chat-history-tit{
+    display: block;
+    margin-bottom: 2.4rem;
+    font-size: 1.6rem;
+    font-weight: kodata.$fwBold;
+    color: kodata.$colorWhite;
+    line-height: 2.4rem;
+  }
+
+  .chat-list{
+    li{
+      @include kodata.flex;
+      width: 100%;
+
+      .btn-history{
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: kodata.$colorWhite;
+        @include kodata.ellipsis;
+      }
+
+      .tooltip-wrap{
+        flex-shrink: 0;
+        margin-left: auto !important;
+      }
+
+      .btn-history-del{
+        display: none;
+        width: 2.4rem;
+        height: 2.4rem;
+        @include kodata.imgSrc('chat/icon-close-white.svg');
+      }
+
+      + li{
+        margin-top: 1.2rem;
+      }
+
+      &:hover{
+        .btn-history-del{
+          display: block;
+          animation: fadeIn .23s;
+        }
+      }
+
+      &.active{
+        .btn-history{
+          font-weight: kodata.$fwBold;
+          color: kodata.$colorSecondaryBasic;
+        }
+      }
+    }
+  }
+
+  .chat-history-date{
+    display: block;
+    margin-bottom: 1.2rem;
+    font-size: 1.5rem;
+    color: kodata.$colorGrayInput;
+    line-height: 2.4rem;
+  }
+}
+
+.chat-container{
+  overflow: hidden;
+  height: calc(100% - 4.4rem);
+  @include kodata.flex;
+  
+  .chat-content-wrapper{
+    flex: 1;
+    @include kodata.flex(flex-start, center,column);
+    height: 100%;
+  }
+
+  .chat-panel-wrap{
+    flex-shrink: 0;
+    width: 47%;
+
+    .chat-panel-inner{
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: calc(100% - 3rem);
+      margin: 1rem 1rem 2rem;
+      padding: 3rem 2rem 0;
+    }
+  }
+
+  .content-inner{
+    position: relative;
+    overflow-y: auto;
+    flex: 1;
+    width: calc(100% - 2rem);
+    padding: 3rem 0 0;
+    margin: 1rem 1rem 0;
+    height: auto;
+  }
+
+  &.intro{
+    @include kodata.flex;
+    padding: 0;
+    
+    .chat-content-wrapper{
+      position: relative;
+      @include kodata.flex(center, stretch, column);
+    }
+
+    .content-inner{
+      overflow: visible;
+      padding: 0;
+      flex: none;
+    }
+
+    .chat-intro-wrap{
+      text-align: center;
+
+      .symbol{
+        display: block;
+        width: 6rem;
+        height: 6rem;
+        margin: 0 auto 2.4rem;
+      }
+
+      .intro-title{
+        font-size: 3.2rem;
+        font-weight: kodata.$fwBold;
+        line-height: 4rem;
+      }
+
+      .intro-desc{
+        margin-top: 2.4rem;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: kodata.$colorGrayDisText;
+      }
+    }
+
+    .chat-input-wrap{
+      margin-top: 8rem;
+      margin-bottom: 4rem;
+
+      &.has-attached{
+        // margin-top: 4.8rem;
+      }
+
+      &.has-opt{
+        margin-top: 1rem;
+      }
+    }
+
+    .opt-group{
+      margin-top: 8rem;
+      // top: -4.2rem;
+      padding-top: 0;
+    }
+
+    .chat-opt-wrap{
+      opacity: 0;
+      margin: 8rem auto 0;
+
+      + .opt-group{
+        margin-top: 1.6rem;
+      }
+    }
+
+    &.has-attached{
+      margin-top: 4.8rem;
+    }
+  }
+
+  &.composer{
+    .chat-input-wrap{
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+
+      &.has-opt{
+        // margin-top: 5.8rem;
+      }
+    }
+
+    .chat-messages-wrap{
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+   
+  }
+
+  &.view-panel{
+    .chat-content-wrapper{
+      .chat-opt-wrap, .chat-input-wrap, .chat-messages-wrap, .opt-group{
+        max-width: 83.6rem;
+        width: calc(100% - 4rem);
+        transition: max-width .4s, width .4s;
+      }
+    }
+
+    .chat-panel-wrap{
+      height: 100%;
+      border-left: 1px solid kodata.$colorGrayBoardHover;
+      animation: chatPanelView .4s forwards;
+    }
+  }
+}
+
+.viewer-info-box{
+  @include kodata.flex;
+  width: 100%;
+  margin-bottom: 1.6rem;
+  gap: 1.4rem;
+
+  .viewer-ttl{
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    font-weight: kodata.$fwBold;
+    @include kodata.ellipsis;
+  }
+
+  .tooltip-wrap{
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .btn-close{
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    @include kodata.imgSrc('common/icon-close.svg', center, 2.4rem);
+  }
+
+  .viewer-page-info{
+    flex-shrink: 0;
+    font-size: 1.6rem;
+    line-height: 3.2rem;
+
+    .ipt-wrap{
+      display: inline-flex;
+      width: 5rem;
+      height: 3.2rem;
+      border-radius: 6px;
+      padding: 0 .5rem;
+      margin-right: .8rem;
+      vertical-align: top;
+
+      input{
+        text-align: center;
+      }
+    }
+
+    .total{
+      display: inline-block;
+      vertical-align: top;
+      @extend %fontInherit;
+    }
+  }
+}
+
+.viewer-option-box{
+  @include kodata.flex(flex-end);
+  width: 100%;
+  margin-bottom: 1.6rem;
+}
+
+.viewer-content{
+  overflow: hidden;
+  border: 1px solid kodata.$colorGrayInput;
+  border-radius: 6px;
+}
+
+.chat-intro-wrap{
+  width: 99.2rem;
+  margin: 0 auto;
+}
+
+.chat-intro-opt{
+  width: 99.2rem;
+  margin: 2.4rem auto 0;
+
+  .chat-opt-list{
+    text-align: center;
+  }
+}
+
+.chat-intro-type{
+  width: 99.2rem;
+  margin: 8rem auto 0;
+
+  .chat-type-list{
+    @include kodata.flex(center, center);
+    gap: 2rem;
+
+    .chat-type-item{
+      flex: 1;
+      max-width: 25.8rem;
+      border: 1px solid kodata.$colorGrayInput;
+      border-radius: 12px;
+
+      .btn-type{
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 15.6rem;
+        padding: 1rem 2rem;
+        font-size: 1.8rem;
+        line-height: 2.1rem;
+
+        &:before{
+          content: ''; 
+          display: block;
+          width: 4.8rem;
+          height: 4.8rem;
+          margin: 0 auto 2rem;
+          @include kodata.imgSrc('chat/icon-box-type.svg');
+          transition: background-image .23s;
+        }
+
+        &:after{
+          content: '';
+          position: absolute;
+          top: -1px;
+          left: -1px;
+          right: -1px;
+          bottom: -1px;
+          display: block;
+          border-radius: 12px;
+          border: 4px solid transparent;
+          box-sizing: border-box;
+          transition: border-color .23s;
+
+        }
+
+        &:hover, &:active{
+          opacity: 1;
+
+          &:before{
+            background-image: url('@/assets/images/chat/icon-box-type-active.svg');
+          }
+          &:after{
+            border-color: kodata.$colorPrimary;
+          }
+        }
+      }
+    }
+  }
+}
+
+.chat-input-wrap{
+  position: relative;
+  width: 100%;
+  max-width: 99.2rem;
+  margin: 2rem auto;
+  margin-top: 2rem;
+  border-radius: 20px;
+  background-color: #fff;
+  border: 1px solid kodata.$colorGrayBoardHover;
+  padding: 2rem;
+  transition: height .23s;
+  
+  &:before{
+    content: '';
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+    width: 2rem;
+    height: 3.2rem;
+    background-color: kodata.$colorWhite;
+    z-index: 1;
+  }
+
+  .chat-composer-box{
+    position: absolute;
+    bottom: 2.4rem;
+    left: 2rem;
+    width: calc(100% - 8.2rem);
+    min-height: 2.4rem;
+    max-height: 7.2rem;
+    transition: height .23s;
+    
+    textarea{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2.4rem;
+      max-height: 7.2rem;
+      border: none;
+      padding: 0;
+      outline: none;
+      box-sizing: border-box;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      overflow-y: auto;
+      resize: none;
+    }
+  }
+
+  .chat-action-box{
+    @include kodata.flex;
+
+    .right-area{
+      margin-left: auto;
+      padding-left: 1rem;
+    }
+
+    .tooltip-wrap{
+      position: relative;
+      z-index: 1;
+      background-color: kodata.$colorWhite;
+    }
+
+    .btn-send{
+      display: block;
+      width: 3.2rem;
+      height: 3.2rem;
+      @include kodata.imgSrc('chat/icon-send.svg');
+      
+      &:disabled{
+        @include kodata.imgSrc('chat/icon-send-dis.svg');
+
+        &:active, &:hover{
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &.has-upload{
+    .chat-composer-box{
+      left: 6.2rem;
+      width: calc(100% - 12.4rem);
+      transition: left .23s, height .23s;
+    }
+  }
+
+  &.multi-row{
+    .chat-composer-box{
+      position: relative;
+      bottom: -2.4rem;
+      left: 0;
+      width: 100%;
+      animation: composerBoxUp .23s forwards;
+    }
+
+    .chat-action-box{
+      margin-top: .4rem;
+    }
+  }
+
+  &.has-attached{
+    .chat-attached-box{
+      margin: 0 -2rem 1rem;
+      padding: 0 2rem;
+      overflow-x: auto;
+      white-space: nowrap;
+  
+      &::-webkit-scrollbar{
+        display: none;
+      }
+  
+      .attached-item{
+        position: relative;
+        width: 100%;
+        @include kodata.flex(flex-start, center, row, inline-flex);
+        width: 30.6rem;
+        padding: 1.7rem 1rem;
+        border-radius: 16px;
+        border: solid 1px kodata.$colorGrayBoardHover;
+        transition: background-color .23s;
+
+        .attached{
+          flex-shrink: 0;
+          opacity: 0;
+          display: block;
+          width: 4.8rem;
+          height: 4.8rem;
+          @include kodata.imgSrc('common/icon-attached.svg', center, 2rem);
+          animation: fadeIn .23s forwards;
+        }
+
+        .loading-spinner-wrap{
+          flex-shrink: 0;
+          opacity: 0;
+          animation: fadeIn .23s forwards;
+        }
+  
+        .file-name{
+          @include kodata.ellipsis;
+          margin-left: .5rem;
+          font-size: 1.6rem;
+          line-height: 4.8rem;
+          color: kodata.$colorGrayDisText;
+        }
+  
+        .tooltip-wrap{
+          position: absolute;
+          top: .6rem;
+          right: 1rem;
+        }
+  
+        .btn-attached-del{
+          width: 2.4rem;
+          height: 2.4rem;
+          @include kodata.imgSrc('common/icon-close-20.svg');
+        }
+
+        &.loading{
+          background-color: kodata.$colorGrayBg;
+        }
+  
+        + .attached-item{
+          margin-left: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.opt-group{
+  overflow: hidden;
+  @include kodata.flex;
+  width: 100%;
+  max-width: 99.2rem;
+  margin: 0 auto;
+  background-color: kodata.$colorWhite;
+
+  .btn-opt{
+    flex-shrink: 0;
+    display: inline-block;
+    padding: .4rem 1rem;
+    border-radius: 6px;
+    background-color: #333;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: kodata.$colorWhite;
+    vertical-align: top;
+  }
+
+  .opt-inner{
+    flex: 1;
+    margin-left: 1rem;
+    white-space: nowrap;
+    overflow-x: auto;
+
+    &::-webkit-scrollbar{
+      display: none;
+    }
+  }
+
+  .opt-list{
+    .opt-item{
+      @include kodata.flex(center, center, row, inline-flex);
+      width: auto;
+      padding: 0 .7rem;
+      border: 1px solid kodata.$colorGrayBoardHover;
+      border-radius: 1.6rem;
+      background-color: kodata.$colorGrayBg;
+      
+      vertical-align: top;
+
+      + .opt-item{
+        margin-left: 1rem;
+      }
+    }
+
+    .badge{
+      display: inline-block;
+      font-size: 1.6rem;
+      line-height: 3rem;
+      vertical-align: top;
+
+      .tooltip-wrap{
+        margin-top: .4rem;
+      }
+    }
+
+    .btn-opt-del{
+      width: 2rem;
+      height: 2rem;
+      @include kodata.imgSrc('common/icon-close-20.svg');
+    }
+  }
+
+  + .chat-input-wrap{
+    margin-top: 1.6rem;
+  }
+}
+
+.chat-opt-wrap{
+  position: relative;
+  max-width: 99.2rem;
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 1.6rem;
+  border: 1px solid kodata.$colorGrayBoardHover;
+  background-color: kodata.$colorWhite;
+  border-radius: 10px;
+  animation: fadeIn .23s forwards;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.13);
+  z-index: 100;
+
+  .opt-tit{
+    display: block;
+    padding: 2rem 2.6rem 1rem;
+    font-size: 1.6rem;
+    font-weight: kodata.$fwSemiBold;
+    line-height: 2rem;
+  }
+
+  .chat-opt-list{
+    margin-top: 1.1rem;
+    padding: 0 3rem 1.9rem;
+  }
+
+  .tooltip-wrap{
+    position: absolute;
+    right: 1.2rem;
+    top: 1.6rem;
+  }
+
+  .btn-opt-close{
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    @include kodata.imgSrc('common/icon-close.svg', center, 2.4rem);
+  }
+
+  + .chat-input-wrap{
+    margin-top: 5.8rem !important;
+  }
+}
+
+.chat-opt-list{
+  .chat-opt-item{
+    display: inline-block;
+    margin-right: 1.4rem;
+    vertical-align: top;
+  }
+
+  .opt-name{
+    display: block;
+    padding: 0 .8rem;
+    border: 1px solid kodata.$colorGray2;
+    border-radius: 1.6rem;
+    font-size: 1.6rem;
+    line-height: 3rem;
+
+    &.active{
+      border-color: kodata.$colorLnbNumSel;
+      color: kodata.$colorLnbNumSel;
+    }
+  }
+}
+
+.chat-messages-wrap{
+  opacity: 0;
+  max-width: 99.2rem;
+  margin: 0 auto;
+  height: 100%;
+
+  .chat-box{
+    min-height: 100%;
+    padding-bottom: 4rem;
+
+    &.h-auto{
+      min-height: auto;
+    }
+  }
+
+  .question-item{
+    @include kodata.flex;
+    width: 100%;
+    opacity: 0;
+    animation: fadeInMessages .3s forwards;
+    
+    .q-inner{
+      margin-left: auto;
+      width: 50.5rem;
+      padding: 1.2rem 2rem;
+      border-radius: 20px 4px 20px 20px;
+      background-color: kodata.$colorSecondaryLight;
+    }
+  
+    .q-text{
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      color: kodata.$colorBlack;
+    }
+
+    + .answer-item{
+      margin-top: 4rem;
+    }
+  }
+
+  .answer-item{
+    position: relative;
+    width: 74.4rem;
+    padding-left: 4.4rem;
+    animation: fadeIn .23s forwards;
+    opacity: 0;
+
+    .symbol, .err-symbol{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3.2rem;
+      height: 3.2rem;
+      opacity: 0;
+      animation: fadeIn .23s forwards;
+    }
+
+    .message{
+      padding-top: .4rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      margin-top: 0;
+    }
+    
+    .loading-spinner-wrap{
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      &:before{
+        width: 3.2rem;
+        height: 3.2rem;
+      }
+    }
+
+    .err-message{
+      position: relative;
+      margin-left: -4.4rem;
+      padding-top: .4rem;
+      padding-left: 4.4rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      opacity: 0;
+      animation: fadeIn .23s .3s forwards;
+      
+      .message{
+        padding-top: 0;
+      }
+
+      [class^="btn-"]{
+        margin-top: 1rem;
+      }
+
+      .btn-refresh{
+        width: 2.4rem;
+        height: 2.4rem;
+        @include kodata.imgSrc('chat/icon-refresh.svg');
+      }
+    
+      .btn-new-chat{
+        width: 2.4rem;
+        height: 2.4rem;
+        @include kodata.imgSrc('chat/icon-new-chat-sm.svg');
+      }
+
+      + *{
+        margin-top: 0;
+      }
+    }
+
+    .answer-content{
+      position: relative;
+      margin-left: -4.4rem;
+      padding-top: .4rem;
+      padding-left: 4.4rem;
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+      opacity: 0;
+      animation: fadeIn .23s .3s forwards;
+    }
+
+    .ai-assistant{
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+
+      > *{
+        @extend %fontInherit;
+
+        + *{
+          margin-top: 2rem;
+        }
+      }
+
+      table{
+        + table{
+          margin-top: 0;
+        }
+      }
+
+      h1{
+        font-size: 2.4rem;
+        font-weight: kodata.$fwBold;
+      }
+  
+      h2{
+        font-size: 2.2rem;
+        font-weight: kodata.$fwBold;
+      }
+  
+      h3{
+        font-size: 2rem;
+        font-weight: kodata.$fwBold;
+      }
+      
+      h4{
+        font-size: 1.8rem;
+        font-weight: kodata.$fwBold;
+      }
+  
+      ul{
+        text-indent: -2rem; 
+        margin-left: 2rem;
+  
+        li{
+          list-style-type: disc;
+        }
+      }
+  
+      ol{
+        text-indent: -1.4rem; 
+        margin-left: 1.4rem;
+  
+        li{
+          list-style-type: decimal;
+        }
+      }
+  
+      ul, ol {
+        li{
+          position: relative;
+          list-style-position: inside;
+          line-height: 2.4rem;
+        }
+      }
+  
+      img{
+        width: 100%;
+      }
+  
+      strong{
+        font-weight: kodata.$fwBold;
+      }
+  
+      em{
+        font-style: italic;
+      }
+  
+      hr{
+        display: block;
+      }
+  
+      blockquote{
+        font-style: italic;
+  
+        &:before, &:after{
+          content: '"';
+        }
+      }
+    }
+
+    .answer-source{
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid kodata.$colorGrayBoardHover;
+
+      .source-item{
+        @include kodata.flex;
+        gap: .8rem;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+
+        .doc-name{
+          @include kodata.ellipsis;
+          position: relative;
+          padding-left: 2.4rem;
+          font-size: 1.6rem;
+          line-height: 2.4rem;
+          text-align: left;
+
+          &::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            margin: .2rem .4rem 0 0;
+            vertical-align: top;
+            @include kodata.imgSrc('chat/icon-doc.svg');
+          }
+        }
+
+        .page-info{
+          flex-shrink: 0;
+        }
+
+        .btn-page{
+          display: block;
+          font-size: 1.6rem;
+          line-height: 2.4rem;
+          color: kodata.$colorPrimary;
+        }
+
+        .tooltip-wrap{
+          +.tooltip-wrap{
+            margin-left: .4rem
+          }
+        }
+
+        .date{
+          @extend %fontInherit;
+        }
+
+        .right-area{
+          flex-shrink: 0;
+          margin-left: auto;
+          font-size: 1.6rem;
+          line-height: 2.4rem;
+
+          .tooltip-wrap{
+            margin-left: 2.4rem;
+          }
+
+          .date{
+            display: inline-block;
+            vertical-align: top;
+          }
+        }
+
+        .btn-save{
+          display: block;
+          width: 2.4rem;
+          height: 2.4rem;
+          @include kodata.imgSrc('chat/icon-save.svg');
+        }
+
+        + .source-item{
+          margin-top: .8rem;
+        }
+      }
+    }
+    
+    .answer-recommend{
+      margin-top: 2rem;
+      padding-top: .8rem;
+      border-top: 1px solid kodata.$colorGrayBoardHover;
+
+      .btn-recommend{
+        display: inline-block;
+        margin: 1.2rem 1.2rem 0 0;
+        vertical-align: top;
+        font-size: 1.6rem;
+        color: kodata.$colorGrayDisText;
+        line-height: 2.4rem;
+        padding: 1.2rem 2rem;
+        background-color: kodata.$colorSecondaryBright;
+        border-radius: 20px 4px 20px 20px;
+      }
+    }
+
+    .answer-feedback{
+      margin-top: 2rem;
+
+      .tooltip-wrap{
+        margin-right: 1.2rem;
+
+      }
+
+      [class^="btn-"]{
+        display: inline-block;
+        width: 2.4rem;
+        height: 2.4rem;
+        vertical-align: top;
+      }
+
+      .btn-copy{
+        @include kodata.imgSrc('chat/icon-copy.svg');
+      }
+      
+      .btn-like{
+        @include kodata.imgSrc('chat/icon-like.svg');
+      }
+      
+      .btn-dislike{
+        @include kodata.imgSrc('chat/icon-dislike.svg');
+      }
+      
+      .btn-feedback{
+        @include kodata.imgSrc('chat/icon-feedback.svg');
+      }
+    }
+  }
+}
+
+$icon-images: "ai", "doc", "knowledge", "counsel", "contract", "code", "prediction", "report", "security", "strategy", "planning", "operation", "data", "algorithms", "material"; 
+@each $img in $icon-images {
+  .symbol{
+    @for $i from 1 through 15 {
+      &.type-#{$img}{
+        @include kodata.imgSrc('chat/icon-symbol-#{$img}.svg');
+      }
+    }
+  }
+}
+
+.err-symbol{
+  &.err{
+    @include kodata.imgSrc('chat/icon-symbol-err.svg');
+  }
+  &.network-err{
+    @include kodata.imgSrc('chat/icon-symbol-network-err.svg');
+  }
+  &.privacy{
+    @include kodata.imgSrc('chat/icon-symbol-privacy.svg');
+  }
+  &.unknown{
+    @include kodata.imgSrc('chat/icon-symbol-unknown.svg');
+  }
+}
+
+.skeleton-loading {
+  position: relative;
+  opacity: 0;
+  animation: fadeIn .4s .75s forwards;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1.6rem;
+
+  .item {
+    height: 12px;
+    border-radius: 6px;
+    background: kodata.$colorSecondaryBright;
+    position: relative;
+    overflow: hidden;
+
+    &.short {
+      width: 30%;
+    }
+
+    &.medium {
+      width: 60%;
+    }
+
+    &.long {
+      width: 90%;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150%;
+      height: 100%;
+      width: 150%;
+      background: linear-gradient( 90deg, rgba(228, 227, 247, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(228, 227, 247, 0) 100%);
+      transform: translateX(0);
+      animation: shimmer 1.2s infinite;
+    }
+  }
+}

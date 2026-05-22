@@ -1,0 +1,161 @@
+<template>
+	<div class="content-guide">
+		<h1>Component 명세</h1>
+    
+		<h2>default</h2>
+		<div class="area-con">
+			- src/components/baseCommonUI 폴더 내부에 모든 컴포넌트를 정의한다.
+			<br>
+		</div>
+		
+		<h2>컴포넌트 명세(basic)</h2>
+    <h3>UiSelect.vue</h3>
+		<div class="area-con">
+			<e class="bold">select 컴포넌트</e>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- options : select option Array</li>
+          <li>- initialValue : 초기 selected option 설정</li>
+          <li>- disabled : 비활성화 선택</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>UiDatePicker.vue</h3>
+    <div class="area-con">
+			<strong class="bold">날짜 선택 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          
+        </ul>
+      </div>
+    </div>
+
+    <h3>UiBreadcrumbs.vue</h3>
+    <div class="area-con">
+			<strong class="bold">컨텐츠영역 최상단 화면 경로 확인을 위한 브래드크럼 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- breadcrumbs : 경로 배열</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>UiPagination.vue</h3>
+    <div class="area-con">
+			<strong class="bold">페이지네이션 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+        </ul>
+      </div>
+    </div>
+
+    <h3>UiModal.vue</h3>
+    <div class="area-con">
+			<strong class="bold">팝업 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- transitionName : 팝업 애니메이션 효과 이름</li>
+          <li>- popTitle : 팝업 제목</li>
+          <li>- isPopShow : 팝업을 표시할지 여부</li>
+          <li>- popCloseHandler : 팝업 닫기 이벤트</li>
+          <li>- addClassName : 팝업 추가 클래스 이름</li>
+          <li>- isPopFooter : 팝업 푸터 표시 여부</li>
+          <li>- isPopHeader : 팝업 헤더 표시 여부</li>
+          <li>- isPopCloseBtn : 팝업 닫기 버튼 표시 여부</li>
+          <li>- isAlert : 알럿 팝업인 경우 true</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>UiTab.vue</h3>
+    <div class="area-con">
+			<strong class="bold">탭 버튼 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- active : 탭 활성화 여부</li>
+          <li>- disabled : 비활성화 선택</li>
+        </ul>
+        <p class="bold">[emits]</p>
+        <ul class="area-list-view">
+          <li>- tab-selected : 탭 선택 이벤트</li>
+        </ul>
+      </div>
+    </div>
+    <h3>UiTabPanel.vue</h3>
+    <div class="area-con">
+			<strong class="bold">탭 패널 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+        </ul>
+      </div>
+    </div>
+    <h3>UiTextField.vue</h3>
+    <div class="area-con">
+			<strong class="bold">텍스트 입력 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- showClearButton : 클리어 버튼 표시 여부</li>
+          <li>- showPasswordToggle : 비밀번호 토글 표시 여부</li>
+          <li>- disabled : 비활성화 선택</li>
+        </ul>
+      </div>
+		</div>
+
+		<h2>컴포넌트 명세(공통 사용 컨텐츠)</h2>
+    <h3>UiCertField.vue</h3>
+		<div class="area-con">
+      <p class="bold">인증코드 입력 + 연락처확인 버튼 + 엑셀 다운로드 컴포넌트(UiExcelDownload.vue)</p>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- certTg : 인증코드 텍스트</li>
+          <li>- isExcelDownload : 엑셀 다운로드 여부</li>
+          <li>- isPrivacyCheck : 연락처확인 버튼 표시 여부</li>
+          <li>- isReasonField : 엑셀 다운로드 사유입력 필드 표시 여부</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>UiExcelDownload.vue</h3>
+    <div class="area-con">
+			<strong class="bold">엑셀 다운로드 사유입력 필드 + 다운로드 버튼 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- isReasonField : 엑셀 다운로드 사유입력 필드 표시 여부</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>UiTblTotal.vue</h3>
+    <div class="area-con">
+			<strong class="bold">테이블 상단 건수 + 노출건수 선택 select 컴포넌트</strong>
+      <div class="area-view">
+        <p class="bold">[props]</p>
+        <ul class="area-list-view">
+          <li>- total : 리스트 총 건수</li>
+          <li>- selectOptions : select option array </li>
+        </ul>
+      </div>
+    </div>
+	</div>
+</template>
+
+<script>
+export default {
+  setup() {},
+}
+</script>
+
+<style lang="scss">
+	@use '@/assets/sass/guide/guide.scss'; 
+</style>

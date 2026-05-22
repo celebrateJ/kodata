@@ -1,0 +1,510 @@
+// 최상단 선언
+@use "@/assets/sass/abstracts/index" as kodata;
+
+/* checkbox & radio box */
+.ipt-box {
+  position: relative;
+  min-height: 2rem;
+  vertical-align: middle;
+  font-size: 0;
+  
+  & + & {
+    margin-top: 1.6rem;
+  }
+}
+
+.ipt-btn {
+  position: relative;
+  font-size: 0;
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.ipt-box {
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+  }
+
+  label {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 2rem;
+    padding-left: 3.6rem;
+    min-width: 2.8rem;
+    min-height: 2.8rem;
+    line-height: 2.4rem;
+    font-size: 1.6rem;
+
+    &:last-child,
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+.ipt-check {
+  & + label {
+    @include kodata.imgSrc('common/icon-chk-off.svg', left top, 2.8rem auto);
+    transition: background 0.3s;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  &:checked + label {
+    background-image: url('@/assets/images/common/icon-chk-on.svg');
+  }
+
+  &:disabled + label {
+    background-image: url('@/assets/images/common/icon-chk-off-dis.svg');
+
+    &:hover{
+      cursor: default;
+    }
+  }
+  &:checked:disabled + label {
+    background-image: url('@/assets/images/common/icon-chk-on-dis.svg');
+  }
+}
+
+.ipt-radio {
+  & + label {
+    @include kodata.imgSrc('common/icon-rdo-off.svg', left top);
+    background-size: 2.8rem auto;
+    transition: background 0.3s;
+
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
+  &:checked + label {
+    background-image: url('@/assets/images/common/icon-rdo-on.svg');
+  }
+
+  &:disabled + label {
+    background-image: url('@/assets/images/common/icon-rdo-dis.svg');
+
+    &:hover{
+      cursor: default;
+    }
+  }
+  &:disabled:checked + label {
+    background-image: url('@/assets/images/common/icon-rdo-dis.svg');
+  }
+}
+
+/* switch */
+.switch-box {
+  @include kodata.flex;
+  padding: 0 .3rem;
+
+  .ipt-switch {
+    input[type="checkbox"] {
+      position: relative;
+      width: 4rem;
+      height: 1.8rem;
+      background-color: #ddd;
+      border-radius: 1rem;
+      -webkit-transition: background 0.3s;
+      -o-transition: background 0.3s;
+      transition: background 0.3s;
+
+      &:focus {
+        outline: none
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        margin-top: -1.2rem;
+        left: -0.3rem;
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        background-color: kodata.$colorWhite;
+        -webkit-transition: left 0.3s;
+        -o-transition: left 0.3s;
+        transition: left 0.3s;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.15);
+      }
+
+      &:checked {
+        background-color: #1aa4c3;
+
+        &::after {
+          left: calc(100% - 2.1rem);
+        }
+      }
+
+      &:disabled {
+        background-color: #eeeff3;
+
+        &::after {
+          background-color: rgba(255, 255, 255, 0.6);
+        }
+      }
+
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+/* select */
+.select-box {
+  > select {
+    background-color: #fff;
+    border: 1px solid kodata.$colorGray2;
+    border-radius: 12px;
+    padding: 0 4rem 0 1.5rem;
+    font-size: 1.6rem;
+    width: auto;
+    min-width: 12.6rem;
+    height: 4.4rem;
+    cursor: pointer;
+    @include kodata.imgSrc('common/icon-select-down.svg', right 1.5rem center, 2.4rem, no-repeat, #fff);
+    text-overflow: ellipsis ;
+    white-space: nowrap;
+    transition: border-color .23s;
+    outline: none;
+
+    // &:active, &:hover {
+    //   border-color: #000;
+    //   outline: none;
+    // }
+
+    &:disabled {
+      opacity: 1;
+      background-color: kodata.$colorGrayBg;
+      border-color: kodata.$colorGrayBg;
+      background-image: none;
+      color: kodata.$colorGray1;
+    }
+  }
+}
+
+
+/* input */
+input::-webkit-input-placeholder, 
+textarea::-webkit-input-placeholder{
+  color: kodata.$colorGrayFormBoard;
+}
+input[type="text"],
+input[type="password"],
+input[type="number"],
+input[type="email"],
+input[type="tel"] {
+  font-size: 1.6rem;
+}
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+  outline: none;
+}
+.ipt-wrap.disabled {
+  background-color: kodata.$colorGrayBg;
+  border-color: kodata.$colorGrayBoardHover;
+
+  input[type="text"],
+  input[type="password"],
+  input[type="number"],
+  input[type="email"],
+  input[type="tel"] {
+    background-color: inherit;
+  }
+
+  &:focus-within, &:hover{
+    border-color: kodata.$colorGrayBoardHover;
+    background-color: kodata.$colorGrayBg;
+  }
+}
+input[type="text"]:disabled,
+input[type="password"]:disabled,
+input[type="number"]:disabled,
+input[type="email"]:disabled,
+input[type="tel"]:disabled {
+  background-color: kodata.$colorGrayBg !important;
+  border-color: kodata.$colorGrayBoardHover !important;
+  color: kodata.$colorGrayFormBoard !important;
+}
+
+.ipt-wrap {
+  position: relative;
+  overflow: hidden;
+  @include kodata.flex(center, center);
+  padding: 0 1.5rem;
+  height: 4.4rem;
+  border: 1px solid kodata.$colorGrayInput;
+  -webkit-transition: border 0.3s ease-out;
+  -o-transition: border 0.3s ease-out;
+  transition: border 0.3s ease-out;
+  border-radius: 12px;
+  background-color: #fff;
+
+  &:focus-within, &:hover {
+    border-color: kodata.$colorGray2;
+  }
+
+  * {
+    background-color: inherit;
+  }
+
+  > input {
+    flex: 1 1 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  [class*="btn-"]{
+    display: block;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin-left: .5rem;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .btn-ipt-del {
+    width: 2.4rem;
+    height: 2.4rem;
+    @include kodata.imgSrc('common/icon-close.svg');
+    
+  }
+
+  .btn-search{
+    @include kodata.imgSrc('common/btn-ip-search.svg');
+  }
+
+  &.readonly{
+    &:focus-within, &:hover {
+      border-color: #ccc;
+
+      input{
+        cursor: default;
+      }
+    }
+  }
+}
+
+.err-msg{
+  margin-top: .8rem;
+  font-size: 1.2rem;
+  color: kodata.$colorErr;
+}
+.ipt-row {
+  @include kodata.flex(flex-start, center);
+
+  > .ipt-wrap {
+    flex: 1 1 0;
+  }
+  > * + * {
+    margin-left: .4rem;
+  }
+  > * + .txt{
+    margin-left: .8rem;
+
+    + *{
+      margin-left: .8rem;
+    }
+  }
+
+  
+
+  .ipt-wrap{
+    + .ipt-wrap{
+      margin-left: .8rem;
+    }
+  }
+  > .btn-txt{
+    flex: none;
+    min-width: 10rem; // memberPopCommon > 인수센터 회원 등록 > 샘플양식 다운로드 버튼때문에 min-width로 변경
+  }
+  > .select-box{
+    select{
+      width: 100%;
+    }
+  }
+
+  .select-box{
+    + .ipt-box{
+      margin-left: 1.2rem;
+    }
+  }
+  .ipt-box{
+    + .select-box{
+      margin-left: 1.2rem;
+    }
+
+    & + .ipt-box{
+      margin-top: 0;
+    }
+  }
+
+  .dp__main{
+    + .ipt-box{
+      margin-left: 1.2rem;
+    }
+  }
+  .ipt-box{
+    flex-shrink: 0;
+  }
+
+  .dash{
+    margin-left: .2rem;
+    font-size: 1.6rem;
+    font-weight: kodata.$fwMedium;
+
+    & + *{
+      margin-left: .2rem;
+    }
+  }
+
+  .ipt-wrap,
+  .flex {
+    flex: 1 1 0;
+  }
+  .flex-n,
+  > *[class$="0p"] {
+    flex: none;
+  }
+
+  .ipt-ttl{
+    display: inline-block;
+    margin-right: 1.2rem;
+    font-size: 1.5rem;
+    font-weight: kodata.$fwMedium;
+
+    & + *{margin-left: 0;}
+
+    & + .dp__main{
+      width: 12.6rem;
+    }
+  }
+
+  .unit{
+    display: inline-block;
+    margin-left: .8rem;
+    font-size: 1.4rem;
+    color: #ccc;
+  }
+}
+
+.ipt-col{
+  > * + *{
+    margin-top: 1.6rem;
+  }
+}
+
+.ipt-file { 
+  display: inline-block;
+  vertical-align: top;
+
+  input[type="file"]{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  .btn-upload{
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    @include kodata.imgSrc('chat/icon-file.svg', center, 2.4rem);
+    cursor: pointer;
+  }
+}
+
+.textarea-box{
+  textarea{
+    width: 100%;
+    min-height: 24rem;
+    padding: 1rem 1.6rem;
+    border: 1px solid kodata.$colorGrayInput;
+    border-radius: 12px;
+    background-color: #fff;
+    font-size: 1.6rem;
+    line-height: 24px;
+    transition: border-color .23s;
+
+    &:hover, &:active, &:focus{
+      border-color: kodata.$colorGray1;
+      outline: none;
+    }
+
+    &:disabled{
+      background-color: kodata.$colorGrayBg;
+      border-color: kodata.$colorGrayBoardHover;
+    }
+  }
+}
+
+.ipt-row-box{
+  @include kodata.flex(flex-start, center);
+
+  .ipt-box{
+    + .ipt-row.type-date {
+      .dp__main {
+        max-width: 12.6rem;
+      }
+    }
+
+    & + .ipt-box{
+      margin-top: 0;
+    }
+  }
+
+  > * + *{
+    margin-left: 1.2rem;
+  }
+
+  &.right{
+    justify-content: flex-end;
+  } 
+
+}
+
+.ipt-row-txt{
+  @include kodata.flex(center, center);
+
+  > * + *{
+    margin-left: .8rem;
+  }
+
+  .ipt-wrap{
+    flex: 1;
+  }
+  
+  .ipt-ttl, .dash{
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    font-weight: kodata.$fwMedium;
+    color: kodata.$colorGray2;
+  }
+  .dp__main{
+    flex: 1 1 0;
+  }
+  
+}

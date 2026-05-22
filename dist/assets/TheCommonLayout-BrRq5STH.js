@@ -1,0 +1,1 @@
+import{_ as o,r as t,b as s,c as n,d as c,e as r}from"./index-SBn8eRYL.js";const a={setup(){return{}}},_={class:"wrapper type-common"},p={class:"common-content"};function m(d,i,u,l,f,h){const e=t("router-view");return s(),n("div",_,[c("main",p,[r(e)])])}const $=o(a,[["render",m]]);export{$ as default};

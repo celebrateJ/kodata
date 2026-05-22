@@ -1,0 +1,13 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index' as kodata;
+
+.chatbot-list-wrap{
+  height: 100%;
+  padding: 1rem;
+
+  .content-inner{
+    height: 100%;
+    overflow-y: auto;
+    padding: 3rem;
+  }
+}

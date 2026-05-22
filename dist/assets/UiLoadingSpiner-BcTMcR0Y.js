@@ -1,0 +1,1 @@
+import{_ as e,c as a,d as n,b as i}from"./index-SBn8eRYL.js";const o={name:"UiLoadingSpinner"},r={class:"loading-spinner-wrap"};function t(p,s,c,d,l,_){return i(),a("div",r,[...s[0]||(s[0]=[n("div",{class:"loading-spinner"},[n("span",{class:"spinner-image"},[n("span",{class:"txt-blind"},"로딩중")])],-1)])])}const m=e(o,[["render",t]]);export{m as default};

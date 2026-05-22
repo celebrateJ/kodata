@@ -1,0 +1,26 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index';
+
+// base
+@use '@/assets/sass/base/font';
+@use '@/assets/sass/base/reset';
+@use '@/assets/sass/base/common';
+@use '@/assets/sass/base/animation';
+
+//layout
+@use '@/assets/sass/layout/layout';
+
+//components
+@use '@/assets/sass/components/button';
+@use '@/assets/sass/components/tooltip';
+@use '@/assets/sass/components/form';
+@use '@/assets/sass/components/table';
+@use '@/assets/sass/components/tab';
+@use '@/assets/sass/components/popup';
+@use '@/assets/sass/components/contents';
+@use '@/assets/sass/components/vendors'; 
+@use '@/assets/sass/components/accordion';
+
+//page
+@use '@/assets/sass/pages/chat';
+@use '@/assets/sass/pages/main';

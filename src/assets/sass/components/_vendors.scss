@@ -1,0 +1,281 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index' as kodata;
+
+/* datepicker */
+.dp__theme_light {
+  --dp-font-size: 1.4rem;
+  --dp-border-color: #ccc;
+  --dp-border-color-hover: #ccc;
+  --dp-border-color-focus: #000;
+  --dp-text-color: : #000;
+  --dp-input-padding: 0 3.4rem 0 1.2rem;
+  --dp-input-icon-padding: 1.2rem;
+}
+
+.dp__main{
+  &.error{
+    .dp__input{
+      border-color: kodata.$colorErr;
+
+      &:hover:not(.dp__input_focus){
+        border-color: kodata.$colorErr;
+      }
+    }
+  }
+  &.disabled{
+    .dp__disabled{
+      background-color: #ccc !important;
+      border-color: #ccc !important;
+      color: kodata.$colorGrayBg !important;
+    }
+    .dp__input_wrap::after{
+      // background-image: url('@/assets/images/icon-calendar-dis.svg');
+    }
+  }
+}
+
+.dp__input_wrap{
+  .dp__input{
+    height: 4.4rem;
+    border-color: #ccc;
+
+    &:hover:not(.dp__input_focus){
+      border-color: kodata.$colorGray1;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    right: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2.4rem;
+    height: 2.4rem;
+    // background: url('@/assets/images/icon-calendar.svg') right center / 2.4rem auto no-repeat;
+    // @include kodata.imgSrc('icon-calendar.svg', center center, 2.4rem);
+  }
+  
+  .dp__input_icon,
+  .dp--clear-btn {
+    display: none;
+  }
+}
+
+.type-time {
+  .dp__input_wrap::after {
+    // @include kodata.imgSrc('icon-time.svg', center center, 2.2rem);
+  }
+
+  .dp__overlay.dp--overlay-relative{
+    height: 15rem !important;
+  }
+}
+
+.dp__selection_preview{
+  display: none !important;
+}
+
+.dp__action_buttons{
+  flex: 1 1 0 !important;
+  
+  .dp__action_button{
+    flex: 1 1 0;
+    justify-content: center;
+    width: 100%;
+    height: 3.6rem;
+    font-size: 1.4rem;
+  }
+  .dp__action_select{
+    background-color: kodata.$colorPrimary !important;
+  }
+  .dp__action_cancel:hover{
+    border-color: #ccc !important;
+  }
+}
+.dp__active_date{
+  background-color: kodata.$colorPrimary !important;
+}
+.dp__today{
+  border-color: kodata.$colorPrimary !important;
+}
+.dp__overlay_cell_active{
+  background-color: kodata.$colorPrimary !important;
+}
+
+
+.swiper{
+  .swiper-button-prev, .swiper-button-next{
+    top: 50%;
+    left: 1.6rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin: 0;
+    // @include kodata.imgSrc('icon-swiper-prev.svg');
+    transform: translateY(-50%);
+
+    &:before, &:after{
+      content: none;
+    }
+  }
+
+  .swiper-button-next{
+    left: auto;
+    right: 1.6rem;
+    transform: translateY(-50%) rotate(180deg);
+  }
+
+  .swiper-pagination-bullet{
+    background-color: #ccc;
+    opacity: 1;
+
+    &.swiper-pagination-bullet-active{
+      background-color: kodata.$colorGray1;
+    }
+  }
+  
+
+}
+
+.wrapper{
+  /* multiselect */
+  .multiselect__content-wrapper{
+    border: 1px solid #ccc; 
+    border-top: none;
+  }
+  .multiselect--active .multiselect__select{
+    transform: none;
+  }
+  .multiselect{
+    height: 3.8rem;
+    min-height: auto;
+  
+    &:hover{
+      cursor: pointer;
+
+      .multiselect__tags{
+        border-color: #000;
+      }
+    }
+
+    .multiselect__tags{
+      height: 100%;
+      min-height: auto;
+      padding: 0 3.2rem 0 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: .4rem;
+      transition: border-color .3s ease-out;
+    }
+
+    .multiselect__placeholder{
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      color: kodata.$colorGrayBg;
+      line-height: 3.6rem;
+    }
+
+    .multiselect__select{
+      top: 0;
+      height: 3.6rem;
+      // // @include kodata.imgSrc('icon-select-down-dis.svg', right 1.2rem center, 2.4rem, no-repeat);
+      padding: 0;
+      // @include kodata.imgSrc('icon-brand-search.svg', center, 2.4rem, no-repeat);
+
+      &::before{
+        content: none;
+      }
+    }
+
+    .multiselect__input, .multiselect__single{
+      min-height: auto;
+      padding: 0;
+      margin: 0;
+      font-size: 1.4rem;
+      line-height: 3.6rem;
+      color: #000;
+      width: 100%;
+      @include kodata.ellipsis;
+    }
+
+    .multiselect__content{
+      width: 100%;
+      padding: 2rem 0;
+
+      li{
+        + li{
+          margin-top: 1.6rem;
+        }
+      }
+
+    }
+
+    .multiselect__option{
+      padding: 0 1.2rem;
+      font-size: 1.4rem;
+      font-weight: kodata.$fwMedium;
+      line-height: 2rem;
+      min-height: 2rem;
+      white-space:initial;
+
+      span{
+        transition: opacity .2s;
+      }
+
+      &:after{
+        content: none;
+      }
+    }
+
+    .multiselect__option--selected{
+      background: transparent;
+
+      span{
+        font-weight: kodata.$fwSemiBold;
+        opacity: 1 !important;
+      }
+    }
+
+    .multiselect__option--highlight{
+      background-color: transparent;
+
+      span{
+        opacity: .3;
+      }
+
+      &:after{
+        content: none;
+      }
+    }
+  }
+}
+
+/* floating-vue tooltip */
+.v-popper--theme-dropdown {
+  .v-popper__inner {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    z-index: 1000 !important;
+  }
+  .v-popper__arrow-container {
+    display: none !important;
+  }
+}
+
+.tooltip-cont {
+  padding: .5rem 1.2rem;
+  border-radius: 1.7rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 1.3rem;
+  font-weight: kodata.$fwMedium;
+  line-height: 1.8rem;
+  color: kodata.$colorWhite;
+  word-break: keep-all;
+  white-space: nowrap;
+  
+  span {
+    @extend %fontInherit;
+  }
+}

@@ -1,0 +1,32 @@
+// 최상단 선언
+@use '@/assets/sass/abstracts/index' as kodata;
+
+/* table */
+table {
+  width: 100%;
+}
+
+.tbl-info, .answer-item table {
+  tr {
+    border-bottom: 1px solid kodata.$colorGrayBoardHover;
+  }
+
+  th {
+    padding: 1rem 1.6rem;
+    font-size: 1.6rem;
+    background-color: kodata.$colorGrayBg;
+    line-height: 2.4rem;
+    text-align: left;
+  }
+  
+  td {
+    padding: 1rem 1.6rem;
+    font-size: 1.6rem;
+    color: #333;
+    text-align: center;
+    background-color: kodata.$colorWhite;
+    word-break: keep-all;
+    line-height: 2.4rem;
+    text-align: left;
+  }
+}
