@@ -8,7 +8,7 @@
       <template v-slot:tooltipBtn>
         <button 
           type="button" 
-          class="btn-ipt-del"
+          class="ibtn-ipt-del"
           @click="handleClearInput"
         >
           <span class="blind">초기화</span>
@@ -18,7 +18,20 @@
     </UiTooltip>
 
     <!-- 비밀번호 보기 토글 (옵션에 따라 표시) -->
-    <input v-if="showPasswordToggle" type="checkbox" title="비밀번호 보기" class="btn-pw-toggle">
+    <UiTooltip direction="bottom" v-if="showPasswordToggle" >
+      <template v-slot:tooltipBtn>
+        <button 
+          type="button" 
+          class="ibtn-pw-toggle"
+          :class="{ 'active': isPwView }"
+          @click="handlePasswordToggle"
+        >
+          <span class="blind">{{ isPwView ? '비밀번호 숨기기' : '비밀번호 보기' }}</span>
+        </button>
+      </template>
+      <template v-slot:tooltipContent>{{ isPwView ? '비밀번호 숨기기' : '비밀번호 보기' }}</template>
+    </UiTooltip>
+    
 
     <slot name="suffix"></slot>
   </div>
@@ -52,10 +65,17 @@ export default {
       default: false
     }
   },
-  setup(props) {
+  emits: ['pw-view'],
+  setup(props, {emit}) {
     const wrapperRef = ref(null);
     const inputElement = ref(null);
     const hasInputValue = ref(false);
+    const isPwView = ref(false);
+
+    const handlePasswordToggle = () => {
+      isPwView.value = !isPwView.value;
+      emit('pw-view', isPwView.value);
+    };
 
     const checkInputValue = (event) => {// input 값이 있는지 확인
       if(event){
@@ -101,7 +121,9 @@ export default {
     return {
       wrapperRef,
       hasInputValue,
-      handleClearInput
+      handleClearInput,
+      handlePasswordToggle,
+      isPwView,
     };
   }
 };

@@ -676,6 +676,10 @@
     font-size: 1.6rem;
     line-height: 3rem;
 
+    &:hover, &:active, &:focus{
+      opacity: 1;
+    }
+
     &.active{
       border-color: kodata.$colorLnbNumSel;
       color: kodata.$colorLnbNumSel;

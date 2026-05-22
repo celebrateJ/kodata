@@ -20,11 +20,14 @@
     
           <UiFormBox formTitle="비밀번호">
             <template #formBody>
-              <UiTextField class="login-pw">
-                <input type="password" placeholder="비밀번호를 입력하세요">
+              <UiTextField class="login-pw" 
+                showPasswordToggle
+                @pw-view="handlePwView"
+              >
+                <input type="password" ref="ipLoginPw" placeholder="비밀번호를 입력하세요">
               </UiTextField>
             </template>
-            <template #formFooter>
+            <template #formFooter> <!-- 에러메시지 유무에따라 formFooter 영역으로 v-if로 제어 -->
               <p class="err-msg">로그인이 실패 하였습니다. 남은 횟수 4 / 5</p>
             </template>
           </UiFormBox>
@@ -40,8 +43,11 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
 import UiTextField from '@/components/baseCommonUI/UiTextField.vue';
 import UiFormBox from '@/components/baseCommonUI/UiFormBox.vue';
+
 
 export default {
   name: 'ACZ0101S01',
@@ -50,9 +56,19 @@ export default {
     UiFormBox,
   },
   setup() {
-    
+    const ipLoginPw = ref(null);
+
+    const handlePwView = (isPwView) => {
+      if(isPwView){
+        ipLoginPw.value.setAttribute('type', 'text');
+      }else{
+        ipLoginPw.value.setAttribute('type', 'password');
+      }
+    };
 
     return {
+      ipLoginPw,
+      handlePwView,
     };
   },
 }

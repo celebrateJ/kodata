@@ -140,6 +140,10 @@ button, a {
   &.active{
     opacity: 1;
     animation: bookmark .23s forwards;
+
+    @at-root .dark-mode &{
+      animation: bookmarkDarkMode .23s forwards;
+    }
   }
 }
 .ibtn-chatbot{
@@ -181,6 +185,10 @@ button, a {
 
   &.active{
     animation: like .23s forwards;
+
+    @at-root .dark-mode &{
+      animation: likeDarkMode .23s forwards;
+    }
   }
 }
 
@@ -200,6 +208,10 @@ button, a {
 
   &.active{
     animation: dislike .23s forwards;
+
+    @at-root .dark-mode &{
+      animation: dislikeDarkMode .23s forwards;
+    }
   }
 }
 

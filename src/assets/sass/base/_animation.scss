@@ -144,3 +144,41 @@
     background-image: url('@/assets/images/common/icon-bookmark-active.svg');
   }
 }
+
+
+/* darkmode */
+@keyframes bookmarkDarkMode {
+  0%{
+    background-image: url('@/assets/images/common/dark/icon-bookmark.svg');
+  }
+  100%{
+    background-image: url('@/assets/images/common/icon-bookmark-active.svg');
+  }
+}
+
+@keyframes likeDarkMode {
+  0%{
+    background-image: url('@/assets/images/chat/dark/icon-like.svg');
+  }
+  100%{
+    background-image: url('@/assets/images/chat/icon-like-active.svg');
+  }
+}
+
+@keyframes dislikeDarkMode {
+  0%{
+    background-image: url('@/assets/images/chat/dark/icon-dislike.svg');
+  }
+  100%{
+    background-image: url('@/assets/images/chat/icon-dislike-active.svg');
+  }
+}
+
+@keyframes pwToggle {
+  0%{
+    background-image: url('@/assets/images/login/icon-pw-view.svg');
+  }
+  100%{
+    background-image: url('@/assets/images/login/icon-pw-hide.svg');
+  }
+}

@@ -302,7 +302,7 @@ input[type="tel"]:disabled {
     flex-shrink: 0;
   }
 
-  .btn-ipt-del {
+  .ibtn-ipt-del {
     width: 2.4rem;
     height: 2.4rem;
     @include kodata.imgSrc('common/icon-close.svg');
@@ -311,6 +311,16 @@ input[type="tel"]:disabled {
       @include kodata.imgSrc('common/dark/icon-close.svg');
     }
     
+  }
+
+  .ibtn-pw-toggle{
+    flex: none;
+    flex-shrink: 0;
+    @include kodata.imgSrc('login/icon-pw-view.svg');
+
+    &.active{
+      animation: pwToggle .23s forwards;
+    }
   }
 
   .ibtn-search{
