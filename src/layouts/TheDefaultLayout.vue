@@ -26,6 +26,8 @@ export default {
       handleScroll();
       window.addEventListener('scroll', handleScroll);
       window.addEventListener('resize', handleScroll);
+
+      // document.querySelector('body').classList.add('dark-mode');
     })
 
     onBeforeUnmount(() => {
@@ -40,8 +42,8 @@ export default {
       const scrollLeft = window.scrollX;
       const headerEl = document.querySelector('.header-container');
       const sidebarEl = document.querySelector('.sidebar-wrap');
-
-      if(windowWidth < bodyMinWidth){ // 가로 스크롤 시 플로팅 버튼 위치 고정 
+      
+      if(windowWidth < bodyMinWidth){ // 가로 스크롤 시 header, sidebar 위치 고정
         headerEl.style.marginLeft = `-${scrollLeft/10}rem`;
         sidebarEl.style.marginLeft = `-${scrollLeft/10}rem`;
       }

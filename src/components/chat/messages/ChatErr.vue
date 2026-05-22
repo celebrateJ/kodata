@@ -4,13 +4,13 @@
     <p class="message" v-html="errMessage[errType]"></p>
     <UiTooltip direction="bottom" v-if="errType === 'err'">
       <template v-slot:tooltipBtn>
-        <button type="button" class="btn-refresh"><span class="blind">다시 실행</span></button>
+        <button type="button" class="ibtn-refresh"><span class="blind">다시 실행</span></button>
       </template>
       <template v-slot:tooltipContent>다시 실행</template>
     </UiTooltip>
     <UiTooltip direction="bottom" v-if="errType === 'network-err'">
       <template v-slot:tooltipBtn>
-        <button type="button" class="btn-new-chat"><span class="blind">새 채팅</span></button>
+        <button type="button" class="ibtn-new-chat"><span class="blind">새 채팅</span></button>
       </template>
       <template v-slot:tooltipContent>새 채팅</template>
     </UiTooltip>

@@ -16,7 +16,7 @@
           <span class="badge">{{ item.label }}</span>
           <UiTooltip>
             <template v-slot:tooltipBtn>
-              <button type="button" class="btn-opt-del"><span class="blind">삭제</span></button>
+              <button type="button" class="ibtn-opt-del"><span class="blind">삭제</span></button>
             </template>
             <template v-slot:tooltipContent>삭제</template>
           </UiTooltip>
@@ -36,7 +36,7 @@
         
         <UiTooltip>
           <template v-slot:tooltipBtn>
-            <button type="button" class="btn-attached-del"><span class="blind">삭제</span></button>
+            <button type="button" class="ibtn-attached-del"><span class="blind">삭제</span></button>
           </template>
           <template v-slot:tooltipContent>삭제</template>
         </UiTooltip>
@@ -54,7 +54,7 @@
         <template v-slot:tooltipBtn>
           <div class="ipt-file">
             <input type="file" id="fileUpload">
-            <label for="fileUpload" class="btn-upload"><span class="blind">첨부파일 추가</span></label>
+            <label for="fileUpload" class="ibtn-upload"><span class="blind">첨부파일 추가</span></label>
           </div>
         </template>
         <template v-slot:tooltipContent>첨부파일 추가</template>
@@ -63,7 +63,7 @@
       <div class="right-area">
         <UiTooltip>
           <template v-slot:tooltipBtn>
-            <button type="button" class="btn-send" :disabled="!ipMessage" @click="handleSend"><span class="blind">전송</span></button>
+            <button type="button" class="ibtn-send" :disabled="!ipMessage" @click="handleSend"><span class="blind">전송</span></button>
           </template>
           <template v-slot:tooltipContent>전송</template>
         </UiTooltip>

@@ -1,27 +1,6 @@
 // 최상단 선언
 @use '@/assets/sass/abstracts/index' as kodata;
 
-.scrlock{
-  // position: absolute;
-
-  // &.scrlock-after{
-  //   overflow-y: hidden;
-
-  //   .wrapper{
-  //     height: auto;
-
-  //     .container{
-  //       min-height: calc(100vh - 10.6rem);
-  //     }
-  //   }
-  // }
-  
-  // .wrapper{
-  //   overflow-y: hidden;
-  //   overflow-x: auto;
-  // }
-}
-
 .modal-enter-active,
 .modal-leave-active {
   transition: opacity 0.2s;
@@ -74,7 +53,7 @@
       .pop-inner{
         position: relative;
         width: 54rem;
-        background-color: #fff;
+        background-color: kodata.$colorWhite;
         border-radius: 18px;
       }
 
@@ -108,6 +87,13 @@
           font-weight: kodata.$fwSemiBold;
           line-height: 1.8rem;
         }
+
+        .pop-noti-desc{
+          margin: 3.6rem 0 5.9rem;
+          font-size: 1.6rem;
+          font-weight: kodata.$fwMedium;
+          text-align: center;
+        }
       }
 
       .pop-footer{
@@ -133,6 +119,10 @@
         width: 3.2rem;
         height: 3.2rem;
         @include kodata.imgSrc('common/icon-close.svg', center, 2.4rem);
+
+        @at-root .dark-mode &{
+          @include kodata.imgSrc('common/dark/icon-close.svg', center, 2.4rem);
+        }
       }
     }
     
@@ -170,17 +160,16 @@
       .pop-wrap{
         .pop-inner{
           width: 30rem;
-          padding-top: 8.4rem;
+          padding-top: 7rem;
 
           .pop-body{
-            padding-bottom: 4.8rem;
+            padding-bottom: 3.4rem;
 
             p{
-              font-size: 1.6rem;
-              font-weight: kodata.$fwMedium;
-              color: kodata.$colorGray2;
+              font-size: 1.4rem;
+              font-weight: kodata.$fwSemiBold;
               text-align: center;
-              line-height: 1.2;
+              line-height: 1.8rem;
             }
           }
 

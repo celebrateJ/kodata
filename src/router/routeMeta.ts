@@ -4,6 +4,7 @@ type RouteMeta = NonNullable<RouteRecordRaw['meta']>
 
 export const routeMetaByName: Record<string, RouteMeta> = {
   ACA0107M01: { sideBarType: 'main' },
+  ACB0102S01: { sideBarType: 'folding' },
 }
 
 export const attachRouteMeta = (routes: RouteRecordRaw[]): RouteRecordRaw[] =>

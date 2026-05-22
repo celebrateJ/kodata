@@ -20,7 +20,10 @@
 @use '@/assets/sass/components/contents';
 @use '@/assets/sass/components/vendors'; 
 @use '@/assets/sass/components/accordion';
+@use '@/assets/sass/components/toast';
 
 //page
 @use '@/assets/sass/pages/chat';
 @use '@/assets/sass/pages/main';
+@use '@/assets/sass/pages/archive';
+@use '@/assets/sass/pages/login';

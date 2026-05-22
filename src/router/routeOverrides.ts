@@ -53,7 +53,7 @@ export const componentOverridesByName: Record<string, string> = {
  * 기본 레이아웃(TheDefaultLayout)이 아닌 라우트 배치
  */
 export const layoutOverridesByName: Record<string, LayoutName> = {
-  // SM_A_0010: 'TheCommonLayout',
+  ACZ0101S01: 'TheCommonLayout',
   // SM_A_0040: 'TheCommonLayout',
   // SM_A_0120: 'TheCommonLayout',
   // SM_A_0210: 'TheCommonLayout',

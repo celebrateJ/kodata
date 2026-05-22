@@ -73,7 +73,7 @@
   font-size: 1.6rem;
   font-weight: kodata.$fwBold;
   padding-right: 2.4rem;
-  color: kodata.$colorWhite;
+  color: kodata.$colorLnbText;
   line-height: 2.4rem;
 
   &:after{
@@ -119,9 +119,15 @@
     .category-link{
       font-size: 1.8rem;
       line-height: 2.4rem;
-      color: kodata.$colorGrayInput;
-      transition: color 0.3s ease;
+      color: kodata.$colorLnbText2;
       text-align: left;
+      transition: color 0.23s, font-weight 0.23s;
+
+      &:hover, &:active, &:focus{
+        opacity: 1;
+        font-weight: kodata.$fwBold;
+        color: kodata.$colorSecondaryBasic;
+      }
     }
   }
 }

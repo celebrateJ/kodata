@@ -37,10 +37,11 @@
 .dp__input_wrap{
   .dp__input{
     height: 4.4rem;
-    border-color: #ccc;
+    border-color: kodata.$colorGrayInput;
+    border-radius: 12px;
 
     &:hover:not(.dp__input_focus){
-      border-color: kodata.$colorGray1;
+      border-color: kodata.$colorGray2;
     }
   }
 
@@ -271,7 +272,7 @@
   font-size: 1.3rem;
   font-weight: kodata.$fwMedium;
   line-height: 1.8rem;
-  color: kodata.$colorWhite;
+  color: kodata.$colorLnbText;
   word-break: keep-all;
   white-space: nowrap;
   

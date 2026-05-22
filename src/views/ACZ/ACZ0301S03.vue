@@ -4,8 +4,8 @@
     <router-link to="#/" class="btn-list">목록</router-link>
   </div>
 
-  <div class="chat-container" :class="{ intro: isIntro, composer: !isIntro, 'view-panel': isPanel }">
-    <div class="chat-content-wrapper">
+  <div class="work-container" :class="{ intro: isIntro, composer: !isIntro, 'view-panel': isPanel }">
+    <div class="work-content-wrapper">
       <div class="content-inner" ref="contentInner">
         <!-- 챗봇 진입 전 유형 -->
         <ChatIntro 
@@ -49,9 +49,9 @@
         :optMultiSelect="true"
       />
     </div>
-    <div class="chat-panel-wrap" v-if="isPanel">
-      <div class="chat-panel-inner">
-        <ChatViewerPanel
+    <div class="work-panel-wrap" v-if="isPanel">
+      <div class="work-panel-inner">
+        <PanelViewer
           @close-panel="handleClosePanel"
           :viewerTitle="viewerTitle"
           :viewerPage="viewerPage"
@@ -71,7 +71,7 @@ import ChatIntro from '@/components/chat/intro/ChatIntro.vue'; // 인트로
 import ChatComposer from '@/components/chat/composer/ChatComposer.vue'; // 채팅 영역
 import ChatQuestion from '@/components/chat/messages/ChatQuestion.vue'; // 질문
 import ChatAnswer from '@/components/chat/messages/ChatAnswer.vue'; // 답변
-import ChatViewerPanel from '@/components/chat/panel/ChatViewerPanel.vue'; // 문서뷰어 패널
+import PanelViewer from '@/layouts/panel/ThePanelViewer.vue'; // 문서뷰어 패널
 
 export default {
   name: 'ACZ0601S01',
@@ -81,7 +81,7 @@ export default {
     ChatComposer,
     ChatQuestion,
     ChatAnswer,
-    ChatViewerPanel,
+    PanelViewer,
   },
   setup() {
     const breadcrumbsList = ref([

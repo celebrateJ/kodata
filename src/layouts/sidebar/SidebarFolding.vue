@@ -5,7 +5,7 @@
       :open="activeKey === item.value"
       @request-toggle="handleAccordionToggle"
     >
-      <template #title>{{ item.name }} <span class="cnt">{{ item.subCategory.length }}</span></template>
+      <template #title>{{ item.name }} </template>
       <template #content>
         <ul class="category-list">
           <li class="category-item" :class="{'active': subActiveKey === `${item.value}-${subItem.value}`}" @click="handleCategoryToggle(subItem.value)" v-for="subItem in item.subCategory" :key="subItem.value">

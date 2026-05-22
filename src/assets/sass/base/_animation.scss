@@ -44,6 +44,17 @@
   }
 }
 
+@keyframes fadeInToast {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -70,5 +81,66 @@
   to{
     bottom: 0;
   }
-  
+}
+
+@keyframes favorite {
+  0%{
+    transform: scale(1.2);
+    background-image: url('@/assets/images/common/icon-favorite.svg');
+  }
+  70%{
+    transform: scale(1.4);
+    background-image: url('@/assets/images/common/icon-favorite-active.svg');
+  }
+  100%{
+    transform: scale(1);
+    background-image: url('@/assets/images/common/icon-favorite-active.svg');
+  }
+}
+
+@keyframes like {
+  0%{
+    background-image: url('@/assets/images/chat/icon-like.svg');
+  }
+  100%{
+    background-image: url('@/assets/images/chat/icon-like-active.svg');
+  }
+}
+
+@keyframes dislike {
+  0%{
+    background-image: url('@/assets/images/chat/icon-dislike.svg');
+  }
+  100%{
+    background-image: url('@/assets/images/chat/icon-dislike-active.svg');
+  }
+}
+
+@keyframes progressBar {
+  0%{
+    width: 0;
+  }
+  to{
+    width: 100%;
+  }
+}
+
+@for $i from 1 through 5 {
+  @keyframes typeSelect#{$i} {
+    0%{
+      background-image: url('@/assets/images/chat/icon-box-type#{$i}.svg');
+    }
+    to{
+      background-image: url('@/assets/images/chat/icon-box-type#{$i}-active.svg');
+    }
+  }
+}
+
+@keyframes bookmark {
+  0%{
+    background-image: url('@/assets/images/common/icon-bookmark.svg');
+  }
+  100%{
+    background-image: url('@/assets/images/common/icon-bookmark-active.svg');
+  }
 }

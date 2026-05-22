@@ -63,6 +63,11 @@ const routesGuide: Array<RouteRecordRaw> = [ // guide router
     name: 'StyleLoading',
     component: () => import('@/guide/GuideStyleLoading.vue'),
   },
+  {
+    path: '/guide/styletoast',
+    name: 'StyleToast',
+    component: () => import('@/guide/GuideStyleToast.vue'),
+  },
 ]
 
 // 라우터 이동 시 스크롤 최상단 이동 setting

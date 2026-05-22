@@ -4,8 +4,8 @@
     <router-link to="#/" class="btn-list">목록</router-link>
   </div>
 
-  <div class="chat-container" :class="{ intro: isIntro, composer: !isIntro, 'view-panel': isPanel }">
-    <div class="chat-content-wrapper">
+  <div class="work-container" :class="{ intro: isIntro, composer: !isIntro, 'view-panel': isPanel }">
+    <div class="work-content-wrapper">
       <div class="content-inner" ref="contentInner">
         <!-- 챗봇 진입 전 유형 -->
         <ChatIntro v-if="isIntro" />
@@ -48,9 +48,9 @@
         :attachedFile="tempAttachedItems"
       />
     </div>
-    <div class="chat-panel-wrap" v-if="isPanel">
-      <div class="chat-panel-inner">
-        <ChatViewerPanel
+    <div class="work-panel-wrap" v-if="isPanel">
+      <div class="work-panel-inner">
+        <PanelViewer
           @close-panel="handleClosePanel"
           :viewerTitle="viewerTitle"
           :viewerPage="viewerPage"
@@ -59,10 +59,18 @@
       </div>
     </div>
   </div>
+
+  <Toast
+    :active-toast="activeToastConfirm"
+    message="토스트 메시지 내용 길어도 한줄로 노출"
+    @toast-confirm="handleToastConfirmBtn"
+    @toast-close="handleToastConfirmClose"
+    confirm
+  />
 </template>
 
 <script>
-import { ref, nextTick } from 'vue';
+import { ref, nextTick, onMounted } from 'vue';
 
 import UiBreadcrumbs from '@/components/baseCommonUI/UiBreadcrumbs.vue';
 
@@ -70,17 +78,20 @@ import ChatIntro from '@/components/chat/intro/ChatIntro.vue'; // 인트로
 import ChatComposer from '@/components/chat/composer/ChatComposer.vue'; // 채팅 영역
 import ChatQuestion from '@/components/chat/messages/ChatQuestion.vue'; // 질문
 import ChatAnswer from '@/components/chat/messages/ChatAnswer.vue'; // 답변
-import ChatViewerPanel from '@/components/chat/panel/ChatViewerPanel.vue'; // 문서뷰어 패널
+import PanelViewer from '@/layouts/panel/ThePanelViewer.vue'; // 문서뷰어 패널
+
+import Toast from '@/components/baseCommonUI/UiToast.vue';
 
 export default {
-  name: 'ACZ0601S01',
+  name: 'ACZ0301S01NoIntro',
   components: {
     UiBreadcrumbs,
     ChatIntro,
     ChatComposer,
     ChatQuestion,
     ChatAnswer,
-    ChatViewerPanel,
+    PanelViewer,
+    Toast,
   },
   setup() {
     const breadcrumbsList = ref([
@@ -150,6 +161,22 @@ export default {
         }
       });
     }
+
+    onMounted(() => {
+      activeToastConfirm.value = true;
+    });
+
+    const activeToastConfirm = ref(false);
+    const handleToastConfirmOpen = () => {
+      activeToastConfirm.value = true;
+    };
+    const handleToastConfirmBtn = () => {
+      console.log('handleToastConfirm');
+      activeToastConfirm.value = false;
+    };
+    const handleToastConfirmClose = () => {
+      activeToastConfirm.value = false;
+    };
 
     const chatList = ref([]);
 
@@ -314,6 +341,11 @@ export default {
       viewerPage,
       totalPage,
       handleClosePanel,
+
+      activeToastConfirm,
+      handleToastConfirmOpen,
+      handleToastConfirmBtn,
+      handleToastConfirmClose,
 
       tempMarkdown,
       tempOptList,

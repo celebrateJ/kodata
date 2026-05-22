@@ -17,3 +17,9 @@
   color: inherit;
   line-height: inherit;
 }
+
+%panelViewWidth {
+  max-width: 83.6rem;
+  width: calc(100% - 4rem);
+  transition: max-width .4s, width .4s;
+}

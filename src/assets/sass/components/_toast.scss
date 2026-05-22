@@ -1,0 +1,65 @@
+@use '@/assets/sass/abstracts/index' as kodata;
+
+.toast-wrap{
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+
+  .toast-inner{
+    @include kodata.flex(center, center);
+    z-index: 1000;
+    min-width: 25rem;
+    height: 6rem;
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: 16px;
+    background-color: kodata.$colorBlack;
+    border: 1px solid kodata.$colorGrayBoardHover;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.13);
+    opacity: 0;
+    animation: fadeInToast 0.23s forwards;
+  }
+
+  .toast-message{
+    font-size: 1.6rem;
+    font-weight: kodata.$fwSemiBold;
+    line-height: 2.4rem;
+    color: kodata.$colorWhite;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  &.type-confirm{
+    .toast-inner{
+      gap: 1rem;
+    }
+
+    .btn-txt{
+      margin-left: auto;
+    }
+
+    .progress-bar{
+      position: absolute;
+      bottom: 1rem;
+      left: 2rem;
+      width: 10rem;
+      height: 2px;
+      background-color: kodata.$colorGrayBoardHover;
+
+      .progress-bar-inner{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: kodata.$colorGraph02;
+        animation: progressBar 0.23s forwards;
+
+        @for $i from 3 through 10 {
+          &.duration-#{$i} {
+            animation-duration: #{$i}s;
+          }
+        }
+      }
+    }
+  }
+}

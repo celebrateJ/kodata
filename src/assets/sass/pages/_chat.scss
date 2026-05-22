@@ -16,7 +16,7 @@
         animation: fadeIn .23s .2s forwards;
       }
 
-      .btn-toggle-sidebar{
+      .ibtn-toggle-sidebar{
         transform: rotate(180deg);
       }
     }
@@ -75,9 +75,7 @@
       margin-left: auto !important;
     }
 
-    .btn-toggle-sidebar{
-      width: 2.4rem;
-      height: 2.4rem;
+    .ibtn-toggle-sidebar{
       @include kodata.imgSrc('chat/icon-toggle-sidebar.svg');
     }
   }
@@ -117,7 +115,7 @@
     .text{
       font-size: 1.8rem;
       font-weight: kodata.$fwBold;
-      color: kodata.$colorWhite;
+      color: kodata.$colorLnbText;
       line-height: 4.2rem;
     }
 
@@ -138,7 +136,7 @@
     margin-bottom: 2.4rem;
     font-size: 1.6rem;
     font-weight: kodata.$fwBold;
-    color: kodata.$colorWhite;
+    color: kodata.$colorLnbText;
     line-height: 2.4rem;
   }
 
@@ -150,7 +148,7 @@
       .btn-history{
         font-size: 1.6rem;
         line-height: 2.4rem;
-        color: kodata.$colorWhite;
+        color: kodata.$colorLnbText;
         @include kodata.ellipsis;
       }
 
@@ -195,47 +193,15 @@
   }
 }
 
-.chat-container{
-  overflow: hidden;
-  height: calc(100% - 4.4rem);
-  @include kodata.flex;
-  
-  .chat-content-wrapper{
-    flex: 1;
-    @include kodata.flex(flex-start, center,column);
-    height: 100%;
-  }
-
-  .chat-panel-wrap{
-    flex-shrink: 0;
-    width: 47%;
-
-    .chat-panel-inner{
-      overflow-y: auto;
-      overflow-x: hidden;
-      height: calc(100% - 3rem);
-      margin: 1rem 1rem 2rem;
-      padding: 3rem 2rem 0;
-    }
-  }
-
-  .content-inner{
-    position: relative;
-    overflow-y: auto;
-    flex: 1;
-    width: calc(100% - 2rem);
-    padding: 3rem 0 0;
-    margin: 1rem 1rem 0;
-    height: auto;
-  }
-
+.work-container{
   &.intro{
     @include kodata.flex;
     padding: 0;
     
-    .chat-content-wrapper{
+    .work-content-wrapper{
       position: relative;
-      @include kodata.flex(center, stretch, column);
+      // @include kodata.flex(center, stretch, column);
+      padding-top: 21.4rem;
     }
 
     .content-inner{
@@ -282,14 +248,13 @@
     }
 
     .opt-group{
-      margin-top: 8rem;
-      // top: -4.2rem;
+      margin-top: 4.4rem;
       padding-top: 0;
     }
 
     .chat-opt-wrap{
       opacity: 0;
-      margin: 8rem auto 0;
+      margin: 4.4rem auto 0;
 
       + .opt-group{
         margin-top: 1.6rem;
@@ -320,93 +285,21 @@
   }
 
   &.view-panel{
-    .chat-content-wrapper{
+    .work-content-wrapper{
       .chat-opt-wrap, .chat-input-wrap, .chat-messages-wrap, .opt-group{
-        max-width: 83.6rem;
-        width: calc(100% - 4rem);
-        transition: max-width .4s, width .4s;
+        @extend %panelViewWidth;
       }
     }
-
-    .chat-panel-wrap{
-      height: 100%;
-      border-left: 1px solid kodata.$colorGrayBoardHover;
-      animation: chatPanelView .4s forwards;
-    }
   }
-}
-
-.viewer-info-box{
-  @include kodata.flex;
-  width: 100%;
-  margin-bottom: 1.6rem;
-  gap: 1.4rem;
-
-  .viewer-ttl{
-    font-size: 1.8rem;
-    line-height: 2.4rem;
-    font-weight: kodata.$fwBold;
-    @include kodata.ellipsis;
-  }
-
-  .tooltip-wrap{
-    flex-shrink: 0;
-    margin-left: auto;
-  }
-
-  .btn-close{
-    display: block;
-    width: 3.2rem;
-    height: 3.2rem;
-    @include kodata.imgSrc('common/icon-close.svg', center, 2.4rem);
-  }
-
-  .viewer-page-info{
-    flex-shrink: 0;
-    font-size: 1.6rem;
-    line-height: 3.2rem;
-
-    .ipt-wrap{
-      display: inline-flex;
-      width: 5rem;
-      height: 3.2rem;
-      border-radius: 6px;
-      padding: 0 .5rem;
-      margin-right: .8rem;
-      vertical-align: top;
-
-      input{
-        text-align: center;
-      }
-    }
-
-    .total{
-      display: inline-block;
-      vertical-align: top;
-      @extend %fontInherit;
-    }
-  }
-}
-
-.viewer-option-box{
-  @include kodata.flex(flex-end);
-  width: 100%;
-  margin-bottom: 1.6rem;
-}
-
-.viewer-content{
-  overflow: hidden;
-  border: 1px solid kodata.$colorGrayInput;
-  border-radius: 6px;
 }
 
 .chat-intro-wrap{
-  width: 99.2rem;
+  width: kodata.$defaultContentWidth;
   margin: 0 auto;
 }
 
 .chat-intro-opt{
-  width: 99.2rem;
+  width: kodata.$defaultContentWidth;
   margin: 2.4rem auto 0;
 
   .chat-opt-list{
@@ -415,7 +308,7 @@
 }
 
 .chat-intro-type{
-  width: 99.2rem;
+  width: 137rem;
   margin: 8rem auto 0;
 
   .chat-type-list{
@@ -427,24 +320,27 @@
       max-width: 25.8rem;
       border: 1px solid kodata.$colorGrayInput;
       border-radius: 12px;
+      transition: transform .23s;
 
       .btn-type{
         position: relative;
         display: block;
         width: 100%;
         height: 15.6rem;
-        padding: 1rem 2rem;
+        padding: 9.8rem 2rem 1rem;
         font-size: 1.8rem;
         line-height: 2.1rem;
 
         &:before{
           content: ''; 
+          position: absolute;
+          top: 3rem;
+          left: 50%;
           display: block;
           width: 4.8rem;
           height: 4.8rem;
-          margin: 0 auto 2rem;
-          @include kodata.imgSrc('chat/icon-box-type.svg');
-          transition: background-image .23s;
+          margin-left: -2.4rem;
+          transition: transform .23s ease-in;
         }
 
         &:after{
@@ -466,12 +362,34 @@
           opacity: 1;
 
           &:before{
-            background-image: url('@/assets/images/chat/icon-box-type-active.svg');
+            transform: translateY(-.2rem);
           }
+
           &:after{
             border-color: kodata.$colorPrimary;
           }
         }
+      }
+
+      @for $i from 1 through 5 {
+        &:nth-child(#{$i}){
+          .btn-type{
+            &:before{
+              @include kodata.imgSrc('chat/icon-box-type#{$i}.svg');
+            }
+  
+            &:hover, &:active{
+              &:before{
+                animation: typeSelect#{$i} .23s forwards;
+              }
+            }
+          }
+        }
+
+      }
+
+      &:hover{
+        transform: translateY(-.2rem) scale(1.05);
       }
     }
   }
@@ -480,11 +398,11 @@
 .chat-input-wrap{
   position: relative;
   width: 100%;
-  max-width: 99.2rem;
+  max-width: kodata.$defaultContentWidth;
   margin: 2rem auto;
   margin-top: 2rem;
   border-radius: 20px;
-  background-color: #fff;
+  background-color: kodata.$colorWhite;
   border: 1px solid kodata.$colorGrayBoardHover;
   padding: 2rem;
   transition: height .23s;
@@ -541,7 +459,7 @@
       background-color: kodata.$colorWhite;
     }
 
-    .btn-send{
+    .ibtn-send{
       display: block;
       width: 3.2rem;
       height: 3.2rem;
@@ -549,6 +467,10 @@
       
       &:disabled{
         @include kodata.imgSrc('chat/icon-send-dis.svg');
+
+        @at-root .dark-mode &{
+          @include kodata.imgSrc('chat/dark/icon-send-dis.svg');
+        }
 
         &:active, &:hover{
           opacity: 1;
@@ -608,6 +530,10 @@
           height: 4.8rem;
           @include kodata.imgSrc('common/icon-attached.svg', center, 2rem);
           animation: fadeIn .23s forwards;
+
+          @at-root .dark-mode &{
+            @include kodata.imgSrc('common/dark/icon-attached.svg');
+          }
         }
 
         .loading-spinner-wrap{
@@ -630,10 +556,14 @@
           right: 1rem;
         }
   
-        .btn-attached-del{
+        .ibtn-attached-del{
           width: 2.4rem;
           height: 2.4rem;
           @include kodata.imgSrc('common/icon-close-20.svg');
+
+          @at-root .dark-mode &{
+            @include kodata.imgSrc('common/dark/icon-close-20.svg');
+          }
         }
 
         &.loading{
@@ -652,7 +582,7 @@
   overflow: hidden;
   @include kodata.flex;
   width: 100%;
-  max-width: 99.2rem;
+  max-width: kodata.$defaultContentWidth;
   margin: 0 auto;
   background-color: kodata.$colorWhite;
 
@@ -664,7 +594,7 @@
     background-color: #333;
     font-size: 1.6rem;
     line-height: 2.4rem;
-    color: kodata.$colorWhite;
+    color: kodata.$colorLnbText;
     vertical-align: top;
   }
 
@@ -679,40 +609,6 @@
     }
   }
 
-  .opt-list{
-    .opt-item{
-      @include kodata.flex(center, center, row, inline-flex);
-      width: auto;
-      padding: 0 .7rem;
-      border: 1px solid kodata.$colorGrayBoardHover;
-      border-radius: 1.6rem;
-      background-color: kodata.$colorGrayBg;
-      
-      vertical-align: top;
-
-      + .opt-item{
-        margin-left: 1rem;
-      }
-    }
-
-    .badge{
-      display: inline-block;
-      font-size: 1.6rem;
-      line-height: 3rem;
-      vertical-align: top;
-
-      .tooltip-wrap{
-        margin-top: .4rem;
-      }
-    }
-
-    .btn-opt-del{
-      width: 2rem;
-      height: 2rem;
-      @include kodata.imgSrc('common/icon-close-20.svg');
-    }
-  }
-
   + .chat-input-wrap{
     margin-top: 1.6rem;
   }
@@ -720,9 +616,8 @@
 
 .chat-opt-wrap{
   position: relative;
-  max-width: 99.2rem;
+  max-width: kodata.$defaultContentWidth;
   width: 100%;
-  margin-top: 2rem;
   margin-bottom: 1.6rem;
   border: 1px solid kodata.$colorGrayBoardHover;
   background-color: kodata.$colorWhite;
@@ -755,6 +650,10 @@
     width: 3.2rem;
     height: 3.2rem;
     @include kodata.imgSrc('common/icon-close.svg', center, 2.4rem);
+
+    @at-root .dark-mode &{
+      @include kodata.imgSrc('common/dark/icon-close.svg');
+    }
   }
 
   + .chat-input-wrap{
@@ -786,7 +685,7 @@
 
 .chat-messages-wrap{
   opacity: 0;
-  max-width: 99.2rem;
+  max-width: kodata.$defaultContentWidth;
   margin: 0 auto;
   height: 100%;
 
@@ -873,20 +772,8 @@
         padding-top: 0;
       }
 
-      [class^="btn-"]{
+      [class^="ibtn-"]{
         margin-top: 1rem;
-      }
-
-      .btn-refresh{
-        width: 2.4rem;
-        height: 2.4rem;
-        @include kodata.imgSrc('chat/icon-refresh.svg');
-      }
-    
-      .btn-new-chat{
-        width: 2.4rem;
-        height: 2.4rem;
-        @include kodata.imgSrc('chat/icon-new-chat-sm.svg');
       }
 
       + *{
@@ -1024,6 +911,10 @@
             margin: .2rem .4rem 0 0;
             vertical-align: top;
             @include kodata.imgSrc('chat/icon-doc.svg');
+
+            @at-root .dark-mode &{
+              @include kodata.imgSrc('chat/dark/icon-doc.svg');
+            }
           }
         }
 
@@ -1064,12 +955,6 @@
           }
         }
 
-        .btn-save{
-          display: block;
-          width: 2.4rem;
-          height: 2.4rem;
-          @include kodata.imgSrc('chat/icon-save.svg');
-        }
 
         + .source-item{
           margin-top: .8rem;
@@ -1101,29 +986,6 @@
       .tooltip-wrap{
         margin-right: 1.2rem;
 
-      }
-
-      [class^="btn-"]{
-        display: inline-block;
-        width: 2.4rem;
-        height: 2.4rem;
-        vertical-align: top;
-      }
-
-      .btn-copy{
-        @include kodata.imgSrc('chat/icon-copy.svg');
-      }
-      
-      .btn-like{
-        @include kodata.imgSrc('chat/icon-like.svg');
-      }
-      
-      .btn-dislike{
-        @include kodata.imgSrc('chat/icon-dislike.svg');
-      }
-      
-      .btn-feedback{
-        @include kodata.imgSrc('chat/icon-feedback.svg');
       }
     }
   }

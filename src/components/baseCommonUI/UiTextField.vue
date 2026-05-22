@@ -4,14 +4,18 @@
     <slot></slot>
 
     <!-- 삭제 버튼 (옵션에 따라 표시) -->
-    <button 
-      v-if="hasInputValue && showClearBtn" 
-      type="button" 
-      class="btn-ipt-del"
-      @click="handleClearInput"
-    >
-      <span class="blind">초기화</span>
-    </button>
+    <UiTooltip direction="bottom" v-if="hasInputValue && showClearBtn && !disabled && !readonly" >
+      <template v-slot:tooltipBtn>
+        <button 
+          type="button" 
+          class="btn-ipt-del"
+          @click="handleClearInput"
+        >
+          <span class="blind">초기화</span>
+        </button>
+      </template>
+      <template v-slot:tooltipContent>초기화</template>
+    </UiTooltip>
 
     <!-- 비밀번호 보기 토글 (옵션에 따라 표시) -->
     <input v-if="showPasswordToggle" type="checkbox" title="비밀번호 보기" class="btn-pw-toggle">
@@ -23,8 +27,13 @@
 <script>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 
+import UiTooltip from '@/components/baseCommonUI/UiTooltip.vue';
+
 export default {
   name: 'UiTextField',
+  components: {
+    UiTooltip,
+  },
   props: {
     showClearBtn: {
       type: Boolean,

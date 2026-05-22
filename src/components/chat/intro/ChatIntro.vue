@@ -16,7 +16,7 @@
       </li>
     </ul>
   </div>
-  <!-- 챗봇 진입 전 유형 : 박스형태 스타일 -->
+  <!-- 챗봇 진입 전 유형 : 필수형태 스타일 -->
   <div class="chat-intro-type" v-if="typeList.length > 0">
     <ul class="chat-type-list">
       <li class="chat-type-item" v-for="item in typeList" :key="item.value">

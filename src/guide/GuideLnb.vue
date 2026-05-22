@@ -140,6 +140,14 @@ export default{
                 state: '완료',
                 icon: 'pi pi-fw pi-file',
               },
+              {
+                key: '0-2-7',
+                label: 'Toast',
+                data: '/guide/styletoast',
+                type: 'url',
+                state: '완료',
+                icon: 'pi pi-fw pi-file',
+              },
             ]
           },
           {
@@ -167,13 +175,13 @@ export default{
         children: [
           {
             key: '1-0',
-            label: 'ACA',
+            label: 'ACZ - 로그인',
             icon: 'pi pi-fw pi-file',
             children: [
               { 
                 key: '1-0-0', 
-                label: '메인 - ACA0107M01', 
-                data: '/ACA/ACA0107M01',
+                label: '로그인 - ACZ0101S01', 
+                data: '/ACZ/ACZ0101S01',
                 type: 'url',
                 state: '완료',
                 icon: 'pi pi-fw pi-file',
@@ -211,8 +219,38 @@ export default{
               },
               { 
                 key: '1-1-4', 
-                label: '박스형태(ACZ0301S02)', 
+                label: '필수형태(ACZ0301S02)', 
                 data: '/ACZ/ACZ0301S02',
+                type: 'url',
+                state: '완료',
+                icon: 'pi pi-fw pi-file',
+              },
+            ]
+          },
+          {
+            key: '1-2',
+            label: 'ACA',
+            icon: 'pi pi-fw pi-file',
+            children: [
+              { 
+                key: '1-2-0', 
+                label: '메인 - ACA0107M01', 
+                data: '/ACA/ACA0107M01',
+                type: 'url',
+                state: '완료',
+                icon: 'pi pi-fw pi-file',
+              },
+            ]
+          },
+          {
+            key: '1-3',
+            label: 'ACB - 문서아카이브',
+            icon: 'pi pi-fw pi-file',
+            children: [
+              { 
+                key: '1-3-0', 
+                label: '문서아카이브(ACB0102S01)', 
+                data: '/ACB/ACB0102S01',
                 type: 'url',
                 state: '완료',
                 icon: 'pi pi-fw pi-file',

@@ -12,8 +12,8 @@
       </template>
       <template #content>
         <ul class="category-list">
-          <li class="category-item" :class="{'active': subActiveKey === `${item.value}-${subItem.value}`}" @click="handleCategoryToggle(subItem.value)" v-for="subItem in item.subCategory" :key="subItem.value">
-            <button type="button" class="category-link">{{ subItem.name }}</button>
+          <li class="category-item" v-for="subItem in item.subCategory" :key="subItem.value">
+            <router-link to="#/" target="_blank" class="category-link">{{ subItem.name }}</router-link>
           </li>
         </ul>
       </template>
@@ -39,23 +39,15 @@ export default {
     ];
 
     const activeKey = ref('');
-    const subActiveKey = ref(null);
 
     const handleAccordionToggle = (key) => {
-      subActiveKey.value = null;
       activeKey.value = key;
-    };
-
-    const handleCategoryToggle = (key) => {
-      subActiveKey.value = `${activeKey.value}-${key}`;
     };
 
     return {
       acdnList,
       activeKey,
-      subActiveKey,
       handleAccordionToggle,
-      handleCategoryToggle,
     };
   }
 }

@@ -45,7 +45,7 @@
               <span class="date">{{ item.date }}</span>
               <UiTooltip>
                 <template v-slot:tooltipBtn>
-                  <button type="button" class="btn-save"><span class="blind">저장</span></button>
+                  <button type="button" class="ibtn-save"><span class="blind">저장</span></button>
                 </template>
                 <template v-slot:tooltipContent>원본 다운로드</template>
               </UiTooltip>
@@ -64,25 +64,25 @@
         <div class="answer-feedback" v-if="showFeedback">
           <UiTooltip direction="bottom">
             <template v-slot:tooltipBtn>
-              <button type="button" class="btn-copy"><span class="blind">복사</span></button>
+              <button type="button" class="ibtn-copy"><span class="blind">복사</span></button>
             </template>
             <template v-slot:tooltipContent>답변 복사</template>
           </UiTooltip>
           <UiTooltip direction="bottom" v-if="isLike">
             <template v-slot:tooltipBtn>
-              <button type="button" class="btn-like" :class="{ 'active': isLike }" @click="handleLike('like')"><span class="blind">좋아요</span></button>
+              <button type="button" class="ibtn-like" :class="{ 'active': isStateLike }" @click="handleLike('like')"><span class="blind">좋아요</span></button>
             </template>
             <template v-slot:tooltipContent>답변이 마음에 들어요</template>
           </UiTooltip>
           <UiTooltip direction="bottom" v-if="isLike">
             <template v-slot:tooltipBtn>
-              <button type="button" class="btn-dislike" :class="{ 'active': isDislike }" @click="handleLike('dislike')"><span class="blind">싫어요</span></button>
+              <button type="button" class="ibtn-dislike" :class="{ 'active': isStateDislike }" @click="handleLike('dislike')"><span class="blind">싫어요</span></button>
             </template>
             <template v-slot:tooltipContent>답변이 마음에 들지 않아요</template>
           </UiTooltip>
           <UiTooltip direction="bottom" v-if="isFeedback">
             <template v-slot:tooltipBtn>
-              <button type="button" class="btn-feedback" @click="handlePopOpen('ACZ0307P02')"><span class="blind">의견 보내기</span></button>
+              <button type="button" class="ibtn-feedback" @click="handlePopOpen('ACZ0307P02')"><span class="blind">의견 보내기</span></button>
             </template>
             <template v-slot:tooltipContent>의견 보내기</template>
           </UiTooltip>
@@ -192,21 +192,23 @@ export default {
       activePopups.value = newSet;
     };
 
-    const isLike = ref(false);
-    const isDislike = ref(false);
+    const isStateLike = ref(false);
+    const isStateDislike = ref(false);
     const handleLike = (type) => {
       if (type === 'like') {
-        isLike.value = !isLike.value;
-        isDislike.value = false;
+        isStateDislike.value = false;
+        isStateLike.value = true;
       } else {
-        isLike.value = false;
-        isDislike.value = !isDislike.value;
+        isStateLike.value = false;
+        isStateDislike.value = true;
       }
     };
     return {
       isLoading,
       handleViewDoc,
       handleLike,
+      isStateLike,
+      isStateDislike,
       activePopups,
       handlePopOpen,
       handlePopClose,

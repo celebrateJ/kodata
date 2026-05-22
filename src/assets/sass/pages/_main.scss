@@ -6,8 +6,150 @@
   padding: 1rem;
 
   .content-inner{
-    height: 100%;
-    overflow-y: auto;
+    width: 100%;
+    margin: 0;
     padding: 3rem;
+  }
+
+  .page-title-wrap{
+    ~ .page-title-wrap{
+      margin-top: 8rem;
+    }
+  }
+}
+
+.chatbot-list{
+  @include kodata.flex(flex-start, stretch);
+  flex-wrap: wrap;
+  gap: 1.4rem;
+
+  .chatbot-item{
+    @include kodata.flex(flex-start, stretch, column);
+    position: relative;
+    width: calc((100% - 4.2rem) / 4);
+    max-width: 36rem;
+    padding: 1.9rem 2rem 2.8rem;
+    border-radius: 12px;
+    background-color: kodata.$colorWhite;
+    border: 1px solid kodata.$colorGrayInput;
+    transition: transform .23s;
+
+    &:hover{
+      transform: translateY(-.2rem);
+    }
+  }
+
+  .link-chatbot{
+    display: block;
+    position: absolute;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    top: -1px;
+    border: 4px solid transparent;
+    transition: border-color .23s;
+    border-radius: 12px;
+
+    &:hover:not(.disabled){
+      border-color: kodata.$colorPrimary;
+      opacity: 1;
+    }
+  }
+
+  .chatbot-util{
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2.5rem;
+  }
+
+  .ibtn-favorite{
+    display: block;
+    width: 2.8rem;
+    height: 2.8rem;
+    @include kodata.imgSrc('common/icon-favorite.svg');
+    transition: transform .23s;
+
+    &:hover, &:active{
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    &:disabled{
+      opacity: .4;
+
+      &:hover, &:active{
+        transform: none;
+      }
+    }
+
+    &.active{
+      animation: favorite .4s forwards;
+    }
+  }
+
+  .chatbot-ttl{
+    @include kodata.flex;
+
+    .symbol{
+      flex-shrink: 0;
+      display: block;
+      width: 4.8rem;
+      height: 4.8rem;
+    }
+    
+    .ttl{
+      margin-left: 1.5rem;
+      font-size: 2.2rem;
+      font-weight: kodata.$fwBold;
+    }
+  }
+
+  .desc{
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color: kodata.$colorGrayDisText;
+  }
+
+  .chatbot-info{
+    @include kodata.flex;
+    margin: auto -2rem 0;
+    padding: 2.3rem 2rem 0;
+    border-top: 1px solid kodata.$colorGrayInput;
+    gap: .8rem;
+
+    .dept, .name{
+      font-size: 1.4rem;
+      color: kodata.$colorGrayDisText;
+      line-height: 3rem;
+    }
+
+    .name{
+      flex-shrink: 0;
+
+      &:before{
+        content: '|';
+        @extend %fontInherit;
+        margin-right: .8rem;
+        color: kodata.$colorGrayInput;
+      }
+    }
+
+    .dept{
+      @include kodata.ellipsis;
+    }
+
+    .model-type{
+      flex-shrink: 0;
+      margin-left: auto;
+      display: block;
+      border: 1px solid kodata.$colorGrayInput;
+      padding: 0 1.1rem;
+      border-radius: 1.5rem;
+      font-size: 1.6rem;
+      color: kodata.$colorGrayFormBoard;
+      line-height: 2.8rem;
+    }
   }
 }

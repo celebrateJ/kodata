@@ -19,7 +19,7 @@
     border: 1px solid kodata.$colorPrimary;
     color: kodata.$colorWhite;
 
-    &:hover, &:active {
+    &:hover, &:active, &:focus {
       opacity: 1;
       border-color: #007a8c;
       background-color: #007a8c;
@@ -28,7 +28,7 @@
     &:disabled {
       opacity: .2;
 
-      &:hover, &:active {
+      &:hover, &:active, &:focus {
         border-color: kodata.$colorPrimary;
         background-color: kodata.$colorPrimary;
       }
@@ -40,15 +40,15 @@
     border: 1px solid kodata.$colorGrayInput;
     color: kodata.$colorGray1;
 
-    &:hover, &:active {
-      border-color: #eaeaea;
-      background-color: #eaeaea;
+    &:hover, &:active, &:focus {
+      border-color: kodata.$colorSecondaryBtn;
+      background-color: kodata.$colorSecondaryBtn;
     }
 
     &:disabled {
       opacity: .4 !important;
 
-      &:hover, &:active {
+      &:hover, &:active, &:focus {
         border-color: kodata.$colorGrayInput;
         background-color: kodata.$colorGrayInput;
       }
@@ -73,7 +73,7 @@
 
 /* button */
 button, a {
-  &:active, &:hover {
+  &:active, &:hover, &:focus {
     opacity: 0.6;
     transition: background-color 0.23s, border-color 0.23s, color 0.23s, opacity .2s;
   }
@@ -93,31 +93,6 @@ button, a {
       margin-left: 0.8rem;
     }
   }
-
-  .btn-txt {
-    position: relative;
-    display: block;
-    width: 100%;
-  }
-
-  &.col2{
-    flex-wrap: wrap;
-
-    > *{
-      &:nth-child(2n-1){
-        margin-left: 0;
-      }
-      
-      &:nth-child(n+3){
-        margin-top: 0.8rem;
-      }
-    }
-
-    .btn-txt{
-      width: calc((100% - .8rem)/2);
-    }
-  }
-
   &.right{
     justify-content: flex-end;
     
@@ -127,18 +102,131 @@ button, a {
     }
   }
 
-  &.full{
-    flex-wrap: wrap;
-    
+  &.auto{
     > *{
       flex: none;
-      width: 100%;
+      width: auto;
 
       + *{
-        margin: .8rem 0 0;
+        margin-left: 1rem;
       }
     }
   }
 }
 
   
+
+[class^="ibtn-"]{
+  display: block;
+  width: 2.4rem;
+  height: 2.4rem;
+  transition: transform .23s;
+}
+
+.ibtn-save{
+  @include kodata.imgSrc('common/icon-save.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('common/dark/icon-save.svg');
+  }
+}
+.ibtn-bookmark{
+  @include kodata.imgSrc('common/icon-bookmark.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('common/dark/icon-bookmark.svg');
+  }
+
+  &.active{
+    opacity: 1;
+    animation: bookmark .23s forwards;
+  }
+}
+.ibtn-chatbot{
+  @include kodata.imgSrc('common/icon-chat.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('common/dark/icon-chat.svg');
+  }
+}
+.ibtn-trash{
+  @include kodata.imgSrc('common/icon-trash.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('common/dark/icon-trash.svg');
+  }
+}
+
+.ibtn-copy{
+  @include kodata.imgSrc('chat/icon-copy.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('chat/dark/icon-copy.svg');
+  }
+}
+
+.ibtn-like{
+  @include kodata.imgSrc('chat/icon-like.svg');
+  transform: translateY(0) rotate(0);
+  transition: transform .23s;
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('chat/dark/icon-like.svg');
+  }
+
+  &:hover, &:active{
+    opacity: 1;
+    transform: translateY(-3px) rotate(-20deg);
+  }
+
+  &.active{
+    animation: like .23s forwards;
+  }
+}
+
+.ibtn-dislike{
+  @include kodata.imgSrc('chat/icon-dislike.svg');
+  transform: translateY(0) rotate(0);
+  transition: transform .23s;
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('chat/dark/icon-dislike.svg');
+  }
+
+  &:hover, &:active{
+    opacity: 1;
+    transform: translateY(3px) rotate(20deg);
+  }
+
+  &.active{
+    animation: dislike .23s forwards;
+  }
+}
+
+.ibtn-feedback{
+  @include kodata.imgSrc('chat/icon-feedback.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('chat/dark/icon-feedback.svg');
+  }
+}
+
+.ibtn-refresh{
+  width: 2.4rem;
+  height: 2.4rem;
+  @include kodata.imgSrc('chat/icon-refresh.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('chat/dark/icon-refresh.svg');
+  }
+}
+
+.ibtn-new-chat{
+  width: 2.4rem;
+  height: 2.4rem;
+  @include kodata.imgSrc('chat/icon-new-chat-sm.svg');
+
+  @at-root .dark-mode &{
+    @include kodata.imgSrc('chat/dark/icon-new-chat-sm.svg');
+  }
+}

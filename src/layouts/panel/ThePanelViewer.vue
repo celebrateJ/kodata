@@ -4,19 +4,19 @@
     <div class="viewer-page-info">
       (
         <UiTextField :showClearBtn="false">
-          <input type="number" :value="viewerPage">
+          <input type="number" :value="viewerPage === '' ? '1' : viewerPage">
         </UiTextField>
         <span class="total">/{{ totalPage }}</span>
       )
     </div>
     <UiTooltip>
       <template v-slot:tooltipBtn>
-        <button type="button" class="btn-close" @click="handleClosePanel"><span class="blind">닫기</span></button>
+        <button type="button" class="ibtn-close" @click="handleClosePanel"><span class="blind">닫기</span></button>
       </template>
       <template v-slot:tooltipContent>닫기</template>
     </UiTooltip>
   </div>
-  <div class="viewer-option-box">
+  <div class="viewer-option-box" v-if="chkPage">
     <div class="ipt-box">
       <input type="checkbox" id="chkViewPage" class="ipt-check">
       <label for="chkViewPage">관련 페이지만 보기</label>
@@ -34,7 +34,7 @@ import UiTextField from '@/components/baseCommonUI/UiTextField.vue';
 import UiTooltip from '@/components/baseCommonUI/UiTooltip.vue';
 
 export default {
-  name: 'ChatViewerPanel',
+  name: 'ThePanelViewer',
   components: {
     UiTextField,
     UiTooltip,
@@ -51,6 +51,10 @@ export default {
     totalPage: {
       type: String,
       default: '',
+    },
+    chkPage: {
+      type: Boolean,
+      default: true,
     },
   },
   emits: ['close-panel'],

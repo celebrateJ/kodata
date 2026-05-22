@@ -3,7 +3,7 @@
     <div class="header-inner">
       <h1 class="logo">
         <router-link to="#/">
-          <img src="@/assets/images/common/img-logo.png" alt="KD헬스케어">
+          <img src="@/assets/images/common/img-logo.png" alt="KODATA">
           <span>AI Portal</span>
         </router-link>
       </h1>
@@ -11,11 +11,17 @@
       <UiTextField v-if="sideBarType === 'main'">
         <input type="text" placeholder="앱명, 앱 설명 검색" title="검색">
         <template #suffix>
-          <button type="button" class="btn-search"><span class="blind">검색</span></button>
+          <UiTooltip direction="bottom">
+            <template v-slot:tooltipBtn>
+              <button type="button" class="ibtn-search"><span class="blind">검색</span></button>
+            </template>
+            <template v-slot:tooltipContent>검색</template>
+          </UiTooltip>
         </template>
       </UiTextField>
       
       <div class="util-wrap">
+        <button type="button" class="btn-util bookmark" v-if="sideBarType === 'folding'">북마크 <span class="cnt">14</span></button>
         <button type="button" class="btn-util">Admin</button>
         <div class="util-menu-box" :class="{ active: utilActive }">
           <span class="user-role">관리자</span>
@@ -32,7 +38,7 @@
               다크모드
               <UiSwitch @change="handleDarkModeChange"></UiSwitch>
             </li>
-            <li class="menu-pw"><router-link to="#/">비밀번호 변경</router-link></li>
+            <!-- <li class="menu-pw"><router-link to="#/">비밀번호 변경</router-link></li> -->
             <li><button type="button" class="btn-logout">LOG OUT</button></li>
           </ul>
         </div>
@@ -88,7 +94,7 @@ export default {
     const isDarkMode = ref(false);
     const handleDarkModeChange = (checked) => { // 다크모드 switch on/off 체크 여부
       isDarkMode.value = checked;
-      console.log(isDarkMode.value); 
+      document.body.classList.toggle('dark-mode', checked);
     }
 
     return {

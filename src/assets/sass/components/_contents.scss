@@ -1,6 +1,76 @@
 // 최상단 선언
 @use '@/assets/sass/abstracts/index' as kodata;
 
+.filter-box{
+  .ipt-row{
+    + .ipt-row{
+      margin-top: 1rem;
+    }
+  }
+
+  .keyword-group{
+    @include kodata.flex;
+    margin-top: 2rem;
+
+    .txt{
+      flex-shrink: 0;
+      margin-right: 1rem;
+      font-size: 1.4rem;
+      color: kodata.$colorGrayLineHover;
+    }
+
+    .opt-list{
+      margin-top: -1rem;
+    }
+
+    .opt-item{
+      margin: 1rem 1rem 0 0;
+
+      + .opt-item{
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+.opt-list{
+  .opt-item{
+    @include kodata.flex(center, center, row, inline-flex);
+    width: auto;
+    padding: 0 .7rem;
+    border: 1px solid kodata.$colorGrayBoardHover;
+    border-radius: 1.6rem;
+    background-color: kodata.$colorGrayBg;
+    
+    vertical-align: top;
+
+    + .opt-item{
+      margin-left: 1rem;
+    }
+  }
+
+  .badge{
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    vertical-align: top;
+
+    .tooltip-wrap{
+      margin-top: .4rem;
+    }
+  }
+
+  .ibtn-opt-del{
+    width: 2rem;
+    height: 2rem;
+    @include kodata.imgSrc('common/icon-close-20.svg');
+
+    @at-root .dark-mode &{
+      @include kodata.imgSrc('common/dark/icon-close-20.svg');
+    }
+  }
+}
+
 .caution-txt{
   font-size: 1.4rem;
   font-weight: kodata.$fwSemiBold;
@@ -43,7 +113,7 @@
   padding: 2.4rem;
   border: 1px solid #000;
   border-radius: .8rem;
-  background-color: #fff;
+  background-color: kodata.$colorWhite;
 
   .ico-caution{
     display: block;

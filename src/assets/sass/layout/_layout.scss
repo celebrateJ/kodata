@@ -72,12 +72,33 @@ html:hover ::-webkit-scrollbar-thumb {
       display: inline-block;
       min-width: 7.2rem;
       line-height: 3rem;
-      padding: 0 1rem;
+      padding: 0 1.6rem;
       border-radius: 6px;
       font-size: 1.4rem;
       text-align: center;
       border: 1px solid kodata.$colorGrayBoardHover;
       vertical-align: top;
+
+      &.bookmark{
+        .cnt{
+          @extend %fontInherit;
+          font-weight: kodata.$fwBold;
+        }
+
+        &:before{
+          content: '';
+          display: inline-block;
+          width: 2rem;
+          height: 2rem;
+          margin: .5rem 1rem 0 0;
+          @include kodata.imgSrc('common/icon-bookmark-header.svg');
+          vertical-align: top;
+        }
+      }
+
+      + .btn-util{
+        margin-left: .8rem;
+      }
     }
 
     .util-menu-box{ 
@@ -94,6 +115,10 @@ html:hover ::-webkit-scrollbar-thumb {
         height: 2.4rem;
         @include kodata.imgSrc('common/icon-header-user.svg');
         vertical-align: top;
+
+        @at-root .dark-mode &{
+          @include kodata.imgSrc('common/dark/icon-header-user.svg');
+        }
       }
 
       .user-role{
@@ -132,7 +157,7 @@ html:hover ::-webkit-scrollbar-thumb {
         right: -1.6rem;
         min-width: 26.8rem;
         padding: .8rem 1.6rem .3rem;
-        background-color: #fff;
+        background-color: kodata.$colorWhite;
         border-radius: 1rem;
         box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.13);
         text-align: left;
@@ -256,7 +281,7 @@ html:hover ::-webkit-scrollbar-thumb {
       width: 4.4rem;
       height: 4.4rem;
       border-radius: 50%;
-      background-color: #fff;
+      background-color: kodata.$colorWhite;
       border: 1px solid #ccc;
       box-shadow: 0 0 4px 0 rgba(171, 171, 171, 0.6);
       transform: translateY(3rem);
@@ -290,6 +315,14 @@ html:hover ::-webkit-scrollbar-thumb {
   border-radius: 20px;
   box-shadow: 0 4px 12px 0 kodata.$colorGrayBg;
   transition: margin-left .23s .2s;
+
+  .content-inner{
+    width: calc(100% - 2rem);
+    padding: 3rem 0 0;
+    margin: 1rem 1rem 0;
+    height: 100%;
+    overflow-y: auto;
+  }
 }
 
 .breadcrumb-wrap{
@@ -306,6 +339,16 @@ html:hover ::-webkit-scrollbar-thumb {
           margin: 0 .4rem;
           @include kodata.imgSrc('common/icon-breadcrumb-arr.svg');
           vertical-align: top;
+
+          @at-root .dark-mode &{
+            @include kodata.imgSrc('common/dark/icon-breadcrumb-arr.svg');
+          }
+        }
+      }
+
+      &:last-child{
+        .bc-item{
+          font-weight: kodata.$fwBold;
         }
       }
     }
@@ -337,11 +380,139 @@ html:hover ::-webkit-scrollbar-thumb {
       height: 2.4rem;
       margin-right: .9rem;
       @include kodata.imgSrc('common/icon-list.svg');
+
+      @at-root .dark-mode &{
+        @include kodata.imgSrc('common/dark/icon-list.svg');
+      }
     }
   }
 }
 
+.work-container{
+  overflow: hidden;
+  height: calc(100% - 4.4rem);
+  @include kodata.flex;
+  
+  .work-content-wrapper{
+    flex: 1;
+    @include kodata.flex(flex-start, center,column);
+    height: 100%;
+  }
 
+  .work-panel-wrap{
+    flex-shrink: 0;
+    width: 47%;
+
+    .work-panel-inner{
+      overflow-y: auto;
+      overflow-x: hidden;
+      height: calc(100% - 3rem);
+      margin: 1rem 1rem 2rem;
+      padding: 3rem 2rem 0;
+    }
+
+    .viewer-opt-box{
+      margin: 8.6rem 0 2rem;
+      background-color: kodata.$colorGrayBg;
+      padding: 2rem;
+      border-radius: 12px;
+
+      .opt-ttl{
+        display: block;
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        font-weight: kodata.$fwBold;
+      }
+    }
+  }
+
+  .content-inner{
+    position: relative;
+    overflow-y: auto;
+    flex: 1;
+    width: calc(100% - 2rem);
+    padding: 3rem 0 0;
+    margin: 1rem 1rem 0;
+    height: auto;
+  }
+
+  &.view-panel{
+    .work-panel-wrap{
+      height: 100%;
+      border-left: 1px solid kodata.$colorGrayBoardHover;
+      animation: chatPanelView .4s forwards;
+    }
+
+    .viewer-info-box{
+      @include kodata.flex;
+      width: 100%;
+      margin-bottom: 1.6rem;
+      gap: 1.4rem;
+    
+      .viewer-ttl{
+        font-size: 1.8rem;
+        line-height: 2.4rem;
+        font-weight: kodata.$fwBold;
+        @include kodata.ellipsis;
+      }
+    
+      .tooltip-wrap{
+        flex-shrink: 0;
+        margin-left: auto;
+      }
+    
+      .ibtn-close{
+        display: block;
+        width: 3.2rem;
+        height: 3.2rem;
+        @include kodata.imgSrc('common/icon-close.svg', center, 2.4rem);
+
+        @at-root .dark-mode &{
+          @include kodata.imgSrc('common/dark/icon-close.svg', center, 2.4rem);
+        }
+      }
+    
+      .viewer-page-info{
+        flex-shrink: 0;
+        font-size: 1.6rem;
+        line-height: 3.2rem;
+    
+        .ipt-wrap{
+          display: inline-flex;
+          width: 5rem;
+          height: 3.2rem;
+          border-radius: 6px;
+          padding: 0 .5rem;
+          margin-right: .8rem;
+          vertical-align: top;
+    
+          input{
+            text-align: center;
+          }
+        }
+    
+        .total{
+          display: inline-block;
+          vertical-align: top;
+          @extend %fontInherit;
+        }
+      }
+    }
+    
+    .viewer-option-box{
+      @include kodata.flex(flex-end);
+      width: 100%;
+      margin-bottom: 1.6rem;
+    }
+    
+    .viewer-content{
+      overflow: hidden;
+      border: 1px solid kodata.$colorGrayInput;
+      border-radius: 6px;
+    }
+  }
+}
 
 
 body.window-pop{

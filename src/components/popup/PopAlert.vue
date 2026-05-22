@@ -12,7 +12,7 @@
       <div class="btn-wrap" v-if="alertType===''">
         <button 
           type="button" 
-          class="btn-txt line-gray"
+          class="btn-txt primary"
           @click="popCloseHandler()"
         >
           확인

@@ -18,15 +18,29 @@
           </div>
         </div>
         <div>
-          <h3 class="pub-guide-tit-s">Layer Popup(default w600)</h3>
+          <h3 class="pub-guide-tit-s">Confirm Popup</h3>
           <div class="pub-guide-view">
             <!-- 예제 Start -->
-            <button type="button" class="btn-txt line-gray" @click="handlePopOpen('pop-default-w600')">default w600</button>
+            <button type="button" class="btn-txt line-gray" @click="handlePopOpen('pop-confirm')">confirm 팝업 열기</button>
+            <PopAlert
+              :active-alert="activePopups.has('pop-confirm')"
+              :pop-close-handler="() => handlePopClose('pop-confirm')"
+              alert-message="확인 메시지 내용"
+              alert-type="confirm"
+            />
+            <!-- //예제 End -->
+          </div>
+        </div>
+        <div>
+          <h3 class="pub-guide-tit-s">Layer Popup(default w540)</h3>
+          <div class="pub-guide-view">
+            <!-- 예제 Start -->
+            <button type="button" class="btn-txt line-gray" @click="handlePopOpen('pop-default-w540')">default w540</button>
             <popup 
-              :is-pop-show="activePopups.has('pop-default-w600')"
-              :pop-close-handler="() => handlePopClose('pop-default-w600')"
+              :is-pop-show="activePopups.has('pop-default-w540')"
+              :pop-close-handler="() => handlePopClose('pop-default-w540')"
               pop-title="Default Popup Title"
-              add-class-name="pop-w600"
+              add-class-name="pop-w540"
             >
               <template v-slot:popBody>
                 팝업 내용 팝업 내용
@@ -36,7 +50,7 @@
               </template>
               <template v-slot:popFooter>
                 <div class="btn-wrap">
-                  <button type="button" class="btn-txt line-gray" @click="handlePopClose('pop-default-w600')">닫기</button>
+                  <button type="button" class="btn-txt line-gray" @click="handlePopClose('pop-default-w540')">닫기</button>
                   <button type="button" class="btn-txt primary">저장</button>
                 </div>
               </template>  

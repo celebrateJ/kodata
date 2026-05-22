@@ -3,7 +3,7 @@
     <div class="sidebar-header">
       <UiTooltip>
         <template v-slot:tooltipBtn>
-          <button type="button" class="btn-toggle-sidebar" @click="handleSidebar"><span class="blind">채팅 기록 열기</span></button>
+          <button type="button" class="ibtn-toggle-sidebar" @click="handleSidebar"><span class="blind">채팅 기록 열기</span></button>
         </template>
         <template v-slot:tooltipContent>
           <template v-if="isCollapsed">펼치기</template>

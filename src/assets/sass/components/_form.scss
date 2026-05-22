@@ -52,6 +52,12 @@
       margin-right: 0;
     }
   }
+
+  &.type-no-txt{
+    label{
+      padding-left: 2.8rem;
+    }
+  }
 }
 
 .ipt-check {
@@ -77,6 +83,10 @@
   }
   &:checked:disabled + label {
     background-image: url('@/assets/images/common/icon-chk-on-dis.svg');
+  }
+
+  &:focus + label{
+    outline: 1px dashed kodata.$colorGrayFormBoard;
   }
 }
 
@@ -105,6 +115,10 @@
   &:disabled:checked + label {
     background-image: url('@/assets/images/common/icon-rdo-dis.svg');
   }
+
+  &:focus + label{
+    outline: 1px dashed kodata.$colorGrayFormBoard;
+  }
 }
 
 /* switch */
@@ -113,6 +127,9 @@
   padding: 0 .3rem;
 
   .ipt-switch {
+    height: 2.4rem;
+    padding: .3rem;
+
     input[type="checkbox"] {
       position: relative;
       width: 4rem;
@@ -169,25 +186,28 @@
 /* select */
 .select-box {
   > select {
-    background-color: #fff;
-    border: 1px solid kodata.$colorGray2;
+    background-color: kodata.$colorWhite;
+    border: 1px solid kodata.$colorGrayInput;
     border-radius: 12px;
     padding: 0 4rem 0 1.5rem;
     font-size: 1.6rem;
     width: auto;
-    min-width: 12.6rem;
+    min-width: 16rem;
     height: 4.4rem;
     cursor: pointer;
-    @include kodata.imgSrc('common/icon-select-down.svg', right 1.5rem center, 2.4rem, no-repeat, #fff);
+    @include kodata.imgSrc('common/icon-select-down.svg', right 1.5rem center, 2.4rem, no-repeat, kodata.$colorWhite);
     text-overflow: ellipsis ;
     white-space: nowrap;
     transition: border-color .23s;
     outline: none;
 
-    // &:active, &:hover {
-    //   border-color: #000;
-    //   outline: none;
-    // }
+    @at-root .dark-mode &{
+      @include kodata.imgSrc('common/dark/icon-select-down.svg', right 1.5rem center, 2.4rem, no-repeat, kodata.$colorWhite);
+    }
+
+    &:active, &:hover, &:focus {
+      border-color: kodata.$colorGray2;
+    }
 
     &:disabled {
       opacity: 1;
@@ -257,7 +277,7 @@ input[type="tel"]:disabled {
   -o-transition: border 0.3s ease-out;
   transition: border 0.3s ease-out;
   border-radius: 12px;
-  background-color: #fff;
+  background-color: kodata.$colorWhite;
 
   &:focus-within, &:hover {
     border-color: kodata.$colorGray2;
@@ -286,11 +306,19 @@ input[type="tel"]:disabled {
     width: 2.4rem;
     height: 2.4rem;
     @include kodata.imgSrc('common/icon-close.svg');
+
+    @at-root .dark-mode &{
+      @include kodata.imgSrc('common/dark/icon-close.svg');
+    }
     
   }
 
-  .btn-search{
+  .ibtn-search{
     @include kodata.imgSrc('common/btn-ip-search.svg');
+
+    @at-root .dark-mode &{
+      @include kodata.imgSrc('common/dark/btn-ip-search.svg');
+    }
   }
 
   &.readonly{
@@ -305,105 +333,25 @@ input[type="tel"]:disabled {
 }
 
 .err-msg{
-  margin-top: .8rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: kodata.$colorErr;
 }
+
 .ipt-row {
   @include kodata.flex(flex-start, center);
 
-  > .ipt-wrap {
-    flex: 1 1 0;
+  > .ipt-wrap, > .select-box {
+    flex: 1;
   }
+
   > * + * {
-    margin-left: .4rem;
-  }
-  > * + .txt{
-    margin-left: .8rem;
+    margin-left: 1rem;
+  }  
 
-    + *{
-      margin-left: .8rem;
-    }
-  }
-
-  
-
-  .ipt-wrap{
-    + .ipt-wrap{
-      margin-left: .8rem;
-    }
-  }
-  > .btn-txt{
-    flex: none;
-    min-width: 10rem; // memberPopCommon > 인수센터 회원 등록 > 샘플양식 다운로드 버튼때문에 min-width로 변경
-  }
   > .select-box{
     select{
       width: 100%;
     }
-  }
-
-  .select-box{
-    + .ipt-box{
-      margin-left: 1.2rem;
-    }
-  }
-  .ipt-box{
-    + .select-box{
-      margin-left: 1.2rem;
-    }
-
-    & + .ipt-box{
-      margin-top: 0;
-    }
-  }
-
-  .dp__main{
-    + .ipt-box{
-      margin-left: 1.2rem;
-    }
-  }
-  .ipt-box{
-    flex-shrink: 0;
-  }
-
-  .dash{
-    margin-left: .2rem;
-    font-size: 1.6rem;
-    font-weight: kodata.$fwMedium;
-
-    & + *{
-      margin-left: .2rem;
-    }
-  }
-
-  .ipt-wrap,
-  .flex {
-    flex: 1 1 0;
-  }
-  .flex-n,
-  > *[class$="0p"] {
-    flex: none;
-  }
-
-  .ipt-ttl{
-    display: inline-block;
-    margin-right: 1.2rem;
-    font-size: 1.5rem;
-    font-weight: kodata.$fwMedium;
-
-    & + *{margin-left: 0;}
-
-    & + .dp__main{
-      width: 12.6rem;
-    }
-  }
-
-  .unit{
-    display: inline-block;
-    margin-left: .8rem;
-    font-size: 1.4rem;
-    color: #ccc;
   }
 }
 
@@ -414,7 +362,7 @@ input[type="tel"]:disabled {
 }
 
 .ipt-file { 
-  display: inline-block;
+  @include kodata.flex(flex-start, center, row, inline-flex);
   vertical-align: top;
 
   input[type="file"]{
@@ -428,12 +376,32 @@ input[type="tel"]:disabled {
     border: 0;
   }
 
-  .btn-upload{
+  .ibtn-upload{
+    @include kodata.imgSrc('chat/icon-file.svg');
+
+    @at-root .dark-mode &{
+      @include kodata.imgSrc('chat/dark/icon-file.svg');
+    }
+  }
+
+  .btn-attach{
     display: block;
-    width: 3.2rem;
-    height: 3.2rem;
-    @include kodata.imgSrc('chat/icon-file.svg', center, 2.4rem);
-    cursor: pointer;
+    padding: 0 1.5rem;
+    border: 1px solid kodata.$colorGrayInput;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    font-weight: kodata.$fwMedium;
+    line-height: 3.2rem;
+  }
+
+  .desc{
+    margin-left: 1rem;
+    font-size: 1.4rem;
+    color: kodata.$colorGrayLineHover;
+  }
+
+  + .ipt-wrap{
+    margin-top: 1rem;
   }
 }
 
@@ -444,7 +412,7 @@ input[type="tel"]:disabled {
     padding: 1rem 1.6rem;
     border: 1px solid kodata.$colorGrayInput;
     border-radius: 12px;
-    background-color: #fff;
+    background-color: kodata.$colorWhite;
     font-size: 1.6rem;
     line-height: 24px;
     transition: border-color .23s;
@@ -507,4 +475,85 @@ input[type="tel"]:disabled {
     flex: 1 1 0;
   }
   
+}
+
+.ipt-multi-wrap{
+  @include kodata.flex;
+
+  .select-box{
+    flex: 1;
+
+    select{
+      width: 100%;
+    }
+
+    + .tooltip-wrap{
+      margin-left: 2rem;
+    }
+  }
+
+  [class^="ibtn-"]{
+    flex-shrink: 0;
+  }
+}
+
+.form-wrap{
+  .form-box{
+    width: 100%;
+    @include kodata.flex;
+    flex-wrap: wrap;
+    
+    .form-header{
+      flex-shrink: 0;
+      padding-right: .5rem;
+      min-width: 10.6rem;
+
+      .form-ttl{
+        display: block;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+      }
+    }
+
+    .form-body{
+      flex: 1;
+
+      .form-txt{
+        display: block;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+      }
+
+      .select-box{
+        width: 100%;
+
+        select{
+          width: 100%;
+        }
+      }
+    }
+
+
+    + .form-box{
+      margin-top: 2rem;
+    }
+
+    &.vt-top{
+      align-items: flex-start;
+
+      .form-header{
+        padding-top: .6rem;
+      }
+
+      .form-body{
+        .form-txt{
+          padding-top: .6rem;
+
+          + .ipt-wrap{
+            margin-top: 1.6rem;
+          }
+        }
+      }
+    }
+  }
 }

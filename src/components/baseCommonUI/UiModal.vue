@@ -97,26 +97,11 @@ export default {
       }
     };
 
-    const scrLock = () => {
+    const openModal = () => {
       const popNum = document.querySelectorAll('.pop-wrapper.active').length;
       
       if(popNum === 0) {
-        // console.log(popNum)
         popRef.value.classList.add('active');
-
-        const isChat = document.querySelector('.chat-container') ? true : false;
-        
-        const contentsEl =  isChat ? document.querySelector('.chat-container .content-inner') : document.querySelector('.wrapper');
-        const scrTop = !isChat ?window.pageYOffset || document.documentElement.scrollTop : contentsEl.scrollTop;
-        
-        document.body.classList.add('scrlock');
-        document.documentElement.setAttribute('data-scroll-y', scrTop);
-        // contentsEl.style.top = -scrTop + 'px';
-        // if(isChat) document.querySelector('.chat-input-wrap').style.top = -scrTop + 'px';
-        
-        setTimeout(() => {
-          document.body.classList.add('scrlock-after'); // scrlock 처리 완료 후 후처리 필요하여 class 한번 더 추가
-        }, 10);
       } else {
         popRef.value.classList.add('active');
       }
@@ -131,27 +116,8 @@ export default {
       }, 10);
     };
     
-    const scrUnLock = () => {
+    const closeModal = () => {
       popRef.value.classList.remove('active');
-      
-      const popNum = document.querySelectorAll('.pop-wrapper.active').length;
-      
-      if (popNum === 0) {
-        const offsetY = document.documentElement.getAttribute('data-scroll-y');
-        document.documentElement.removeAttribute('data-scroll-y');
-        
-        const isChat = document.querySelector('.chat-container') ? true : false;
-        
-        const contentsEl =  isChat ? document.querySelector('.chat-container .content-inner') : document.querySelector('.wrapper');
-        
-        document.body.classList.remove('scrlock');
-        document.body.classList.remove('scrlock-after');
-        // contentsEl.style.top = '';
-        // if(isChat) document.querySelector('.chat-input-wrap').style.top = '';
-  
-        !isChat ? window.scrollTo(0, offsetY) : contentsEl.scrollTo(0, offsetY);
-      }
-
       popRef.value.style.zIndex = '';
 
       // 팝업 닫힌 후 last-popup 클래스 업데이트
@@ -162,9 +128,9 @@ export default {
 
     watch(() => props.isPopShow, (v) => {
       if (v) {
-        scrLock();
+        openModal();
       } else {
-        scrUnLock();
+        closeModal();
 
         nextTick(() => {
           if (popRef.value && popRef.value.parentNode) {
