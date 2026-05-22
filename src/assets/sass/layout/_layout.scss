@@ -268,6 +268,10 @@ html:hover ::-webkit-scrollbar-thumb {
     box-shadow: 0 4px 12px 0 kodata.$colorGrayBg;
     z-index: 101;
     transition: width .23s .2s, padding .23s .2s;
+
+    &.type-chat{
+      overflow: hidden;
+    }
   }
 
   .floating-wrap{

@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-wrap" :class="{ collapsed: isCollapsed, expanded: isCollapsed === false }">
+  <div class="sidebar-wrap" :class="{ collapsed: isCollapsed, expanded: isCollapsed === false, 'type-chat': sideBarType === 'chat' }">
     <!-- 화면 케이스별 sidebar 분기(채팅, 메인, 문서아카이브) -->
     <SidebarChat 
       v-if="sideBarType === 'chat'" 
